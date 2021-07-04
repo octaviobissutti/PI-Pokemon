@@ -5,30 +5,61 @@ const { v4: uuidv4 } = require("uuid");
 const {URL, POKEMON, TYPE} = require("../Constants/constants");
 const db = require("../db");
 
-async function getAllPokemons(req,res) {
-  const name = req.query.name; //Query
-  if(name) {
-      try {
-         const container = []; 
-         let DB = await Pokemon.findAll({ //Busco en mi DB.
-             where:{
-                 name: name
-             },
-             limit: 12
-         })    
-         if(DB.length < 12) {
-         let apiFirst = await axios.get(`${URL}${POKEMON}/${name}`);
-         let apiNext = await apiFirst.data.next;
-         let api40 = apiFirst.concat(apiNext)
-        }
-      } catch (err) {
-        console.log(err);
-        
-  } 
-  } else {
 
-  }
+async function data() {
+  const arr = await axios.get(`${URL}${POKEMON}`);
+  console.log('ESTO ME DEVUELVE LA API: ', arr.data.results);
+  return arr.data.results;
 }
+
+ async function getAllPokemons(req,res) {
+//   const name = req.query.name; //Query
+//   if(name) {
+//       try {
+//          const container = []; 
+//          let dbSearch = await Pokemon.findAll({ //Busco en mi DB.
+//              where:{
+//                  name: name
+//              }
+//          })    
+//          if(!dbSearch.length) { //Si no lo tengo en mi base de datos lo busco en la api.
+//           let apiFirst = await axios.get(`${URL}${POKEMON}`);
+//           let apiNext = await axios.get(apiFirst.data.next);
+//           let api40 = apiFirst.data.results.concat(apiNext.data.results);
+//           for(let i = 0; i < api40.data.results.length; i++) {
+//             container.push({
+//               id: pokemon.data.id,
+//               image: pokemon.data.sprites.other.dream_world.front_default,
+//               types: type,
+//               height: pokemon.data.height,
+//               weight: pokemon.data.weight,
+//               hp: pokemon.data.stats[0].base_stat,
+//               attack: pokemon.data.stats[1].base_stat,
+//               defense: pokemon.data.stats[2].base_stat,
+//               speed: pokemon.data.stats[5].base_stat
+//             });
+//             }
+//         }
+//         return res.json(dbSearch.concat(container));
+//       } catch (err) {
+//         console.log(err);
+        
+//   } 
+//   } else {
+//     let result = await Pokemon.findAll({
+//       include:{
+//         model: Type,
+//         attributes: ['name', 'id'],
+//         through:{
+//           attributes:[],
+//         }
+//       }
+//     })
+//     return res.json(result);
+//   }
+ }
+
+
 
 
 // if(req.query.name){
@@ -49,7 +80,6 @@ async function getAllPokemons(req,res) {
 //   }
 //   retornas lo de try que esta bien
 // }
-
 
 /*const pokemon = await axios.get('https://pokeapi.co/api/v2/pokemon');
 const pokemon2 = await axios.get(pokemon.data.next);
@@ -99,5 +129,6 @@ const poke2= pokemon.data.results.concat(pokemon2.data.results);*/
 
 
 module.exports = {
+    data,
     getAllPokemons
 }
