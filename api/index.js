@@ -31,7 +31,6 @@ conn.sync({ force: true }).then(() => {
         name : el.name,
         id: el.id
       }))
-      console.log('TODOS LOS TIPOS', `${URL}${TYPE}`);
     })
   });
 });
