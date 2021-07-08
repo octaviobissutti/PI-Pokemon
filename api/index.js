@@ -23,7 +23,7 @@ const axios = require('axios');
 const {URL, TYPE} = require('./src/Constants/constants');
 
 // Syncing all the models at once.
-conn.sync({ force: true }).then(() => {
+conn.sync({ force: false }).then(() => {
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
     axios.get(`${URL}${TYPE}`).then((element) => {

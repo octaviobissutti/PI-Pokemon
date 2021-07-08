@@ -1,89 +1,87 @@
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
-const { Op } = require("sequelize");
-const { v4: uuidv4 } = require("uuid");
 const { URL, POKEMON } = require("../Constants/constants");
 const db = require("../db");
 
 async function getAllPokemons(req, res) {
     let type;
     let name = req.query.name;
-    if(name) {
+    if(name) { //No me busca el pokemon creado, si los de la api.
         var lower = name.toLowerCase();
         try {
-            let pokemon = await axios.get(`${URL}${POKEMON}/${lower}`); 
-            if(pokemon.data.types.length === 1) {
-                type = pokemon.data.types[0].type.name;
+            let api = await axios.get(`${URL}${POKEMON}/${lower}`); 
+            if(api.data.types.length === 1) {
+                type = api.data.types[0].type.name;
             } else {
-                type = pokemon.data.types[0].type.name + " " + pokemon.data.types[1].type.name;
+                type = api.data.types[0].type.name + " " + api.data.types[1].type.name;
             }
             console.log(type);
-            var obj = {
-                name: pokemon.data.name.charAt(0).toUpperCase() + pokemon.data.name.slice(1),
-                id: pokemon.data.id,
-                image: pokemon.data.sprites.other.dream_world.front_default,
+            var pokeApi = {
+                name: api.data.name.charAt(0).toUpperCase() + api.data.name.slice(1),
+                id: api.data.id,
+                image: api.data.sprites.other.dream_world.front_default,
                 types: type,
-                height: pokemon.data.height,
-                weight: pokemon.data.weight,
-                hp: pokemon.data.stats[0].base_stat,
-                attack: pokemon.data.stats[1].base_stat,
-                defense: pokemon.data.stats[2].base_stat,
-                speed: pokemon.data.stats[5].base_stat
+                height: api.data.height,
+                weight: api.data.weight,
+                hp: api.data.stats[0].base_stat,
+                attack: api.data.stats[1].base_stat,
+                defense: api.data.stats[2].base_stat,
+                speed: api.data.stats[5].base_stat
             } 
         } catch (error) {
-            const pokemonDb = await Pokemon.findOne({
+            const dataBase = await Pokemon.findOne({
                 where:{
                     name: lower
                 },
                 include: Type
             })
-            if(!pokemonDb) {
+            if(!dataBase) {
                 return res.status(404).send({message: 'Bad Request'})
             }
-            if(pokemonDb.types.length === 1) {
-                type = pokemonDb.types[0].name;
+            if(dataBase.types.length === 1) {
+                type = dataBase.types[0].name;
             } else {
-                type = pokemonDb.types[0].name + " " + pokemonDb.types[1].name;
+                type = dataBase.types[0].name + " " + dataBase.types[1].name;
             }
-            var finalPokemon ={
-                name : pokemonDb.name.charAt(0).toUpperCase() + pokemonDb.name.slice(1),
-                id: pokemonDb.id,
+            var pokeDb ={
+                name : dataBase.name.charAt(0).toUpperCase() + dataBase.name.slice(1),
+                id: dataBase.id,
                 types: type,
-                height: pokemonDb.height,
-                weight: pokemonDb.weight,
+                height: dataBase.height,
+                weight: dataBase.weight,
                 image: "https://i.playboard.app/p/AAUvwngrNsz0VgH-cA-girh64i7q941e6mxWACzbtr7a0A/default.jpg",
-                hp: pokemonDb.hp,
-                attack: pokemonDb.attack,
-                defense: pokemonDb.defense,
-                speed: pokemonDb.speed
+                hp: dataBase.hp,
+                attack: dataBase.attack,
+                defense: dataBase.defense,
+                speed: dataBase.speed
   
             } 
-            return res.send(finalPokemon);
+            return res.send(pokeDb);
             
         }
-        return res.send(obj);
+        return res.send(pokeApi);
   
     }  else {
         try {
-            const pokemon = await axios.get(`${URL}${POKEMON}`);
-            const pokemon2 = await axios.get(pokemon.data.next);
-            const poke2= pokemon.data.results.concat(pokemon2.data.results);
-            const res1 = await Promise.all(poke2.map(async pokemon => {
-                let subRequest = await axios.get(pokemon.url)
-                if(subRequest.data.types.length === 1) {
-                    type = subRequest.data.types[0].type.name;
+            const first = await axios.get(`${URL}${POKEMON}`);
+            const next = await axios.get(first.data.next);
+            const api40 = first.data.results.concat(next.data.results);
+            const response = await Promise.all(api40.map(async pokemon => {
+                let url = await axios.get(pokemon.url)
+                if(url.data.types.length === 1) {
+                    type = url.data.types[0].type.name;
                 } else {
-                    type = subRequest.data.types[0].type.name + " " + subRequest.data.types[1].type.name
+                    type = url.data.types[0].type.name + " " + url.data.types[1].type.name
                 }
                 return  {
-                    name: subRequest.data.name.charAt(0).toUpperCase() + subRequest.data.name.slice(1),
-                    image: subRequest.data.sprites.other.dream_world.front_default,
-                    id: subRequest.data.id, 
+                    name: url.data.name.charAt(0).toUpperCase() + url.data.name.slice(1),
+                    image: url.data.sprites.other.dream_world.front_default,
+                    id: url.data.id, 
                     types: type
                 }
                 
             }))
-            const pokedb = await Pokemon.findAll({
+            const dataBase = await Pokemon.findAll({
                 include: {
                     attributes: ['name'],
                     model: Type,
@@ -92,7 +90,7 @@ async function getAllPokemons(req, res) {
                     }
                 }
             })
-            const pokedb2 = pokedb.reverse().map(result => {
+            const pokeDb = dataBase.reverse().map(result => {
                 if(result.types.length === 1) {
                     type = result.types[0].name;
                 } else {
@@ -106,7 +104,7 @@ async function getAllPokemons(req, res) {
                 }
   
             })
-            var result = pokedb2.concat(res1);
+            var result = pokeDb.concat(response);
         } catch(error) {
             return res.send('ERROR');
         }
@@ -117,16 +115,16 @@ async function getAllPokemons(req, res) {
 
 
 
-async function addPokemon(req, res) {
+async function addPokemon(req, res) {   
   const { name, image, types, height, weight, hp, attack, defense, speed } =  req.body;
-   
+
   if (!name) {
     return res.status(400).json({ error: "notNull Violation: It requires a valid name" });
   } else {
     const createPokemon = await Pokemon.create({
       name: name,
       image: image,
-      types: types,
+      types: types, //No me muestra los types!
       height: height,
       weight: weight,
       hp: hp,
@@ -139,7 +137,53 @@ async function addPokemon(req, res) {
   }
 }
 
+
+async function getPokemonById(req, res) {
+    let type;
+    let id = req.params.id; //No encuentra el pokemon creado, si los de la api.
+    if(id) {
+        try {
+            let api = await axios.get(`${URL}${POKEMON}/${id}`);
+            if(!api) {
+                const dataBase = await Pokemon.findOne({
+                    where:{
+                        id: id,
+                    },
+                    include: Type
+                })
+                if(!dataBase) {
+                    return res.status(404).send({message: 'Bad Request'})
+                }
+                return res.send(dataBase);
+                
+            }
+            if(api.data.types.length === 1) {
+                type = api.data.types[0].type.name;
+            } else {
+                type = api.data.types[0].type.name + " " + api.data.types[1].type.name;
+            }
+
+            var poke = {
+                name: api.data.name,
+                id: api.data.id,
+                image: api.data.sprites.other.dream_world.front_default,
+                types: type,
+                height: api.data.height,
+                weight: api.data.weight,
+                hp: api.data.stats[0].base_stat,
+                attack: api.data.stats[1].base_stat,
+                defense: api.data.stats[2].base_stat,
+                speed: api.data.stats[5].base_stat
+            } 
+        } catch (error) {
+            return res.status(404).send({message: 'Bad Request'})
+        }
+        return res.json(poke);
+    }
+}
+
 module.exports = {
   getAllPokemons,
   addPokemon,
+  getPokemonById
 };
