@@ -7,9 +7,8 @@ async function getAllPokemons(req, res) {
     let type;
     let name = req.query.name;
     
-    if(name) { //No me busca el pokemon creado, si los de la api.
+    if(name) {
         try {
-            // console.log('NAMEEEEEEEEE: ', name) //Dani
             var lower = name.toLowerCase();
             const dataBase = await Pokemon.findOne({
                 where:{
@@ -18,9 +17,6 @@ async function getAllPokemons(req, res) {
                 include: Type
             })
             if(dataBase) {
-                // console.log('EL NOMBREEEEE: ', name);
-                // console.log('DATAA BASEE: ', dataBase); //NULL
-
                 if(dataBase.types.length === 1) {
                     type = dataBase.types[0].name;
                 } else {
@@ -43,10 +39,7 @@ async function getAllPokemons(req, res) {
             } else {
 
                 let api = await axios.get(`${URL}${POKEMON}/${lower}`); 
-                // console.log('ENTRE APIIIIIIIIIIIIIIII; ');
                 if(api) {
-    
-                    // console.log('ENTRE API: ', api);
                     if(api.data.types.length === 1) {
                         type = api.data.types[0].type.name;
                     } else {
@@ -68,7 +61,6 @@ async function getAllPokemons(req, res) {
                     return res.send(pokeApi);
             }
             }
-            
         
         } catch (error) {
          return res.status(404).send({error: "Pokemon don´t found!! :("});
@@ -130,17 +122,15 @@ async function getAllPokemons(req, res) {
 
 async function addPokemon(req, res) {   
   const { name, image, types, height, weight, hp, attack, defense, speed } =  req.body;
-//   console.log('BODY: ', req.body)
-
   if (!name) {
     return res.status(400).json({ error: "notNull Violation: It requires a valid name" });
-  } //else {
+  } 
     try {
         
         const createPokemon = await Pokemon.create({
           name: name,
           image: image,
-          types: types, //No me muestra los types!
+          types: types, 
           height: height,
           weight: weight,
           hp: hp,
@@ -158,7 +148,7 @@ async function addPokemon(req, res) {
         console.log(error);
         res.status(500).send('Internal Server Error')
     }
-  //}
+  
 }
 
 
@@ -170,13 +160,11 @@ async function addPokemon(req, res) {
 
 async function getPokemonById(req, res) {
     let type;
-    let id = req.params.id; //No encuentra el pokemon creado, si los de la api.
+    let id = req.params.id; 
     if(id) {
-    //  console.log('ID: ', id);   
         try {
             if(!id.includes('-')) {
                 var api = await axios.get(`${URL}${POKEMON}/${id}`);
-                // console.log('ENTRE API: ', api);
                 if(api?.data.types.length === 1) {
                     type = api.data.types[0].type.name;
                 } else {
@@ -205,7 +193,7 @@ async function getPokemonById(req, res) {
                     },
                     include: [Type] 
                 })
-                // console.log('ENTRE DB: ', dataBase);
+                
                 if(!dataBase) {
                     return res.status(404).send({message: 'Pokemon don´t found'})
                 }
