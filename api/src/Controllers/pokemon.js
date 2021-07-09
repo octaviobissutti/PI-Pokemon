@@ -118,8 +118,6 @@ async function getAllPokemons(req, res) {
   }
   
 
-
-
 async function addPokemon(req, res) {   
   const { name, image, types, height, weight, hp, attack, defense, speed } =  req.body;
   if (!name) {
@@ -150,12 +148,6 @@ async function addPokemon(req, res) {
     }
   
 }
-
-
-
-
-
-
 
 
 async function getPokemonById(req, res) {

@@ -1,0 +1,37 @@
+.bg-go {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-image: url("../Img/charizard.jpg");
+    background-size: cover;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+  
+  .btn-grad {
+    background-image: linear-gradient(
+      to right,
+      #870000 0%,
+      #000000 80%,
+      #870000 100%
+    );
+  }
+  .btn-grad {
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 15px 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    border-radius: 10px;
+  }
+  
+  .btn-grad:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+  
