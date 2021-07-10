@@ -2,36 +2,32 @@
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    background-image: url("../Img/charizard.jpg");
+    background-image: url("../Img/pika3d.jpg");
     background-size: cover;
     overflow: hidden;
     width: 100vw;
     height: 100vh;
   }
   
-  .btn-grad {
-    background-image: linear-gradient(
-      to right,
-      #870000 0%,
-      #000000 80%,
-      #870000 100%
-    );
-  }
-  .btn-grad {
-    cursor: pointer;
-    margin-top: 10px;
-    padding: 15px 30px;
-    text-align: center;
-    text-transform: uppercase;
-    transition: 0.5s;
-    background-size: 200% auto;
-    color: white;
-    border-radius: 10px;
-  }
   
-  .btn-grad:hover {
-    background-position: right center; /* change the direction of the change here */
-    color: #fff;
-    text-decoration: none;
-  }
+  .btn-grad {background-image: linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)}
+  .btn-grad {
+     margin: 10px;
+     padding: 15px 45px;
+     text-align: center;
+     text-transform: uppercase;
+     transition: 0.5s;
+     background-size: 200% auto;
+     color: white;      
+     cursor: pointer;      
+     box-shadow: 0 0 20px #eee;
+     border-radius: 10px;
+     display: block;
+   }
+
+   .btn-grad:hover {
+     background-position: right center; /* change the direction of the change here */
+     color: #fff;
+     text-decoration: none;
+   }
   

@@ -6,10 +6,10 @@ import React from "react";
 
 function App() {
   return (
-    <React.Fragment>
-      
-            <Route exact path="/" component={Landing} />
-            </React.Fragment>
+   <React.Fragment>  
+     <Route exact path="/" component={Landing} />
+     <Route path ="/home" component={Home} />
+   </React.Fragment>
     
   );
 }
