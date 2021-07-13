@@ -2,7 +2,7 @@ import React from 'react';
 import './Card.css';
 
 
-const Card = ({image, name, types}) => {
+const Card = ({image, name, types, height, weight, hp, attack, defense, speed}) => {
 
   return (
     <div>
@@ -13,18 +13,28 @@ const Card = ({image, name, types}) => {
             <div className='name'>
               <h5>Name: {name}</h5>
             </div>
-            {/* <div className='type-container'>{types && types.map(el =>  {
-              el.length > 1
-              ? <p>Types: <br></br>
-                {el[0]} & {el[1]}</p>
-              : <p>Type: <br></br> 
-                {el[0]}
-              </p>}  
-             )}
-            </div> */}
+           
             <div className = 'type'>
                 
                 <h5>Types: {types}</h5>
+            </div>
+            <div className = 'height'>
+             <h5>Height: {height}</h5>
+            </div>
+            <div className = 'weight'>
+             <h5>Weight: {weight}</h5>
+            </div>
+            <div className = 'hp'>
+             <h5>HP: {hp}</h5>
+            </div>
+            <div className = 'attack'>
+             <h5>Attack: {attack}</h5>
+            </div>
+            <div className = 'defense'>
+             <h5>Defense: {defense}</h5>
+            </div>
+            <div className = 'speed'>
+             <h5>Speed: {speed}</h5>
             </div>
     
           </div>

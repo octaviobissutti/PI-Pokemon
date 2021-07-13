@@ -12,7 +12,7 @@ const initialState = {
     getTypes: [],
     searchPokemon: [],
     addPokemon: {},
-    getDetails: {},
+    getDetails: [],
 
 };
 

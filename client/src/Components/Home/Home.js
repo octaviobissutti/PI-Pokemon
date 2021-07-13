@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import CardDetail from '../CardDetail';
+import { Link } from 'react-router-dom';
 import { getAllPokemons, getAllTypes} from '../../Redux/Actions/actions';
 import  { useSelector, useDispatch } from 'react-redux';
 
@@ -25,7 +26,8 @@ useEffect(() => {
      <fragment>
          {getPokemons?.map((p) => {
              return (
-                 <Card name = {p.name} image = {p.image} types = {p.types} key = {p.id} />
+                <Link to = {`/cardDetail/${p.id}`}><Card name = {p.name} image = {p.image} types = {p.types} key = {p.id} /></Link>
+               
              )
          })}
      </fragment>
