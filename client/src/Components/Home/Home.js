@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
-import CardDetail from '../CardDetail';
 import SearchBar from '../Searchbar/SearchBar';
 import { Link } from 'react-router-dom';
 import { getAllPokemons, getAllTypes} from '../../Redux/Actions/actions';

@@ -64,7 +64,7 @@ async function getAllPokemons(req, res) {
             }
         
         } catch (error) {
-         return res.status(404).send({error: "Pokemon don´t found :("});
+         return res.status(404).send({error: "Pokemon not found :("});
         }
   
     }  else {
