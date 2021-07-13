@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Card from '../Card/Card';
 import CardDetail from '../CardDetail';
+import SearchBar from '../Searchbar/SearchBar';
 import { Link } from 'react-router-dom';
 import { getAllPokemons, getAllTypes} from '../../Redux/Actions/actions';
 import  { useSelector, useDispatch } from 'react-redux';
@@ -9,6 +10,9 @@ function Home() {
 const dispatch = useDispatch();
 const getPokemons = useSelector((state) => state.getPokemons);
 const getTypes = useSelector((state) => state.getTypes);
+const searchPokemon = useSelector((state) => state.searchPokemon);
+
+const [search, setSearch] = useState(false);
 
 useEffect(() => {
     if(getPokemons) {
@@ -22,28 +26,29 @@ useEffect(() => {
     }
 }, [])
 
+
+useEffect(() => {
+    if(!searchPokemon) {
+        alert('Pokemon not found :(');
+    }
+}, [searchPokemon])
+
  return (
-     <fragment>
-         {getPokemons?.map((p) => {
+     <div>
+         <SearchBar setSearch = {setSearch}/>
+         { search ? searchPokemon && <Link to = {`/cardDetail/${searchPokemon.id}`}><Card name = {searchPokemon.name} image = {searchPokemon.image} types = {searchPokemon.types} key = {searchPokemon.id} /></Link>
+         :
+         getPokemons?.map((p) => {
              return (
                 <Link to = {`/cardDetail/${p.id}`}><Card name = {p.name} image = {p.image} types = {p.types} key = {p.id} /></Link>
                
              )
-         })}
-     </fragment>
+            })}
+
+     </div>
  )
-
-
-
-
-
-
 
 }
 
 export default Home
 
-//ACÁ TENGO QUE MOSTRAR:
-//40 POKEMON(DESPUES PAGINARLOS DE A 12).
-//IMAGEN, NOMBRE Y TIPOS.
-//SEARCHBAR PARA ENCONTRAR POKEMON.

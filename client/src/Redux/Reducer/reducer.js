@@ -8,11 +8,11 @@ import {
 
 
 const initialState = {
-    getPokemons: [],
-    getTypes: [],
-    searchPokemon: [],
-    addPokemon: {},
-    getDetails: [],
+    getPokemons: [], //Me traigo los 40 pokemons.
+    getTypes: [], //Cargo los 20 tipos.
+    searchPokemon: {}, //Busco por query(searchBar).
+    addPokemon: [], //Crear nuevo pokemon.
+    getDetails: [], //Detalle pokemon.
 
 };
 
@@ -21,7 +21,7 @@ const initialState = {
         case GET_POKEMONS:
           return {
             ...state,
-            getPokemons: action.payload,
+            getPokemons: state.addPokemon.concat(action.payload),
           };
     
         case GET_TYPES:
@@ -33,7 +33,7 @@ const initialState = {
         case SEARCH_POKEMONS:
           return {
             ...state,
-            getPokemons: action.payload,
+            searchPokemon: action.payload,
           };
     
         case ADD_POKEMON:

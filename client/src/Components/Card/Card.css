@@ -1,15 +1,16 @@
-.card {
+.card-home {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 150px;
 };
 
-.image {
+.img-home {
     width: 200px; 
     height: 200px;
     border-radius: 50px;
 };
 
-.name {
+.name-home {
     font-weight: bold;
 }

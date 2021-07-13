@@ -27,7 +27,7 @@ function CardDetail({ match }) {
               hp = {getDetails.hp}
               attack = {getDetails.attack}
               defense = {getDetails.defense}
-              speed = {getDetails.speed}
+              speed = {getDetails.speed} 
         />
  
     }

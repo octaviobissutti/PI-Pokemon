@@ -4,7 +4,6 @@ import Home from "./Components/Home/Home";
 import React from "react";
 import CardDetail from "./Components/CardDetail";
 
-
 function App() {
   return (
    <React.Fragment>  

@@ -38,7 +38,7 @@ export const getAllTypes = () => async (dispatch) => {
 //Buscando pokemon por query.
 export const getByName = (name) => async (dispatch) => {
     try {
-        const res = await axios.get(`http://localhost:3001/pokemon?=${name}`);
+        const res = await axios.get(`http://localhost:3001/pokemon?name=${name}`);
         dispatch({
             type: SEARCH_POKEMONS,
             payload: res.data
@@ -71,6 +71,13 @@ export const addPokemon = (pokemon) => async (dispatch) => {
         });
     } catch(err) {
         console.log(err)
+    }
+};
+
+export function clearPokemon() {
+    return {
+        type: SEARCH_POKEMONS,
+        payload: undefined
     }
 };
 

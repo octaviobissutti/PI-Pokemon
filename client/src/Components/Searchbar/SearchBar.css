@@ -1,0 +1,15 @@
+.divSearch {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5px;
+}
+
+.input {
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.btn {
+    padding: 5px;
+    border-radius: 5px;
+}
