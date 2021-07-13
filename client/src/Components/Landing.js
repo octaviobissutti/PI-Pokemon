@@ -8,6 +8,7 @@ function Landing() {
       <Link to="/home">
         <button className="btn-grad"> GET STARTED </button>
       </Link>
+  
     </div>
   );
 }

@@ -1,6 +1,7 @@
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
 const { URL, POKEMON } = require("../Constants/constants");
+// const { v4: uuidv4 } = require('uuid');
 const db = require("../db");
 
 async function getAllPokemons(req, res) {
@@ -63,12 +64,12 @@ async function getAllPokemons(req, res) {
             }
         
         } catch (error) {
-         return res.status(404).send({error: "Pokemon don´t found!! :("});
+         return res.status(404).send({error: "Pokemon don´t found :("});
         }
   
     }  else {
         try {
-            const first = await axios.get(`${URL}${POKEMON}`);
+             const first = await axios.get(`${URL}${POKEMON}`);
             const next = await axios.get(first.data.next);
             const api40 = first.data.results.concat(next.data.results);
             const response = await Promise.all(api40.map(async pokemon => {
@@ -85,8 +86,8 @@ async function getAllPokemons(req, res) {
                     types: type
                 }
                 
-            }))
-            const dataBase = await Pokemon.findAll({
+            })) 
+            var dataBase = await Pokemon.findAll({
                 include: {
                     attributes: ['name'],
                     model: Type,
@@ -95,7 +96,7 @@ async function getAllPokemons(req, res) {
                     }
                 }
             })
-            const pokeDb = dataBase.reverse().map(result => {
+             const pokeDb = dataBase.reverse().map(result => {
                 if(result.types.length === 1) {
                     type = result.types[0].name;
                 } else {
@@ -108,12 +109,13 @@ async function getAllPokemons(req, res) {
                     types: type,
                 }
   
-            })
-            var result = pokeDb.concat(response);
+            }) 
+            var result = pokeDb.concat(response); 
         } catch(error) {
             return res.send('ERROR');
         }
-    return res.send(result); 
+    return res.send(result);  
+    // return res.send(dataBase); 
     }
   }
   
@@ -199,8 +201,57 @@ async function getPokemonById(req, res) {
     }
 }
 
+// async function dbPokemon(req,res, next){
+//     try {
+//         const first = await axios.get(`${URL}${POKEMON}`);
+//         const second = await axios.get(first.data.next);
+//         const api40 = first.data.results.concat(second.data.results);
+//         var response = await Promise.all(api40.map(async pokemon => {
+//             let url = await axios.get(pokemon.url)
+            
+//             console.log('RESPONSE: ', response);
+//             return  {
+//                 name: url.data.name.charAt(0).toUpperCase() + url.data.name.slice(1),
+//                 image: url.data.sprites.other.dream_world.front_default,
+//                 id: url.data.id, 
+//                 types: url.data.types.map(tipo => {
+//                     return {name: tipo.type.name}
+//                 }),  
+//                 height: url.data.height,
+//                 weight: url.data.weight,
+//                 hp: url.data.stats[0].base_stat,
+//                 attack: url.data.stats[1].base_stat,
+//                 defense: url.data.stats[2].base_stat,
+//                 speed: url.data.stats[5].base_stat
+//             }
+            
+//         }))
+//         console.log(response);
+
+//         for(let i of response){
+//             const id = uuidv4();
+//             var pokeFinal = await Pokemon.create({name: i.name, id:id, image: i.image, api: true, height: i.height, weight: i.weight, hp: i.hp, attack: i.attack, defense: i.defense, speed: i.speed})
+//             await pokeFinal.setTypes(i.types.name);
+//            /*  if(response.data.types.length === 1) {
+//                 await pokeFinal.setTypes(i.types[0].id);  type = api.data.types[0].type.name;
+//             } else {
+//                 type = api.data.types[0].type.name + " " + api.data.types[1].type.name;
+//             } */
+//         }
+
+        
+//     }catch(error){
+//         console.log(error);
+//         next(error)
+        
+//     }
+//     return  res.send('pokemon created ok');
+   
+// }
+
 module.exports = {
   getAllPokemons,
   addPokemon,
-  getPokemonById
+  getPokemonById,
+//   dbPokemon
 };

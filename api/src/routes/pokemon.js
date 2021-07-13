@@ -4,7 +4,8 @@ const router = Router();
 
 router.get('/', getAllPokemons);
 router.post('/', addPokemon);
-router.get('/:id', getPokemonById);
+// router.get('/db/poke', dbPokemon);
+router.get('/:id', getPokemonById); 
 
 
 
