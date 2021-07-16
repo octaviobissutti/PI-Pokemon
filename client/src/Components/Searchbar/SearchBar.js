@@ -18,7 +18,7 @@ function SearchBar({setSearch}) {
             e.preventDefault();
             dispatch(getByName(name));
             setSearch(true);
-            setname('hola');
+            setname('hola'); //Mirar porqué no borra lo escrito en el input. 
         } else {
             e.preventDefault();
             setSearch(false);

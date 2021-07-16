@@ -4,8 +4,12 @@ import SearchBar from '../Searchbar/SearchBar';
 import { Link } from 'react-router-dom';
 import { getAllPokemons, getAllTypes} from '../../Redux/Actions/actions';
 import  { useSelector, useDispatch } from 'react-redux';
+// import CreatePokemon from '../CreatePokemon/CreatePokemon';
+// import NavBar from '../Navbar/NavBar';
+import Paginate from '../Paginate/Paginate';
 
 function Home() {
+
 const dispatch = useDispatch();
 const getPokemons = useSelector((state) => state.getPokemons);
 const getTypes = useSelector((state) => state.getTypes);
@@ -32,17 +36,25 @@ useEffect(() => {
     }
 }, [searchPokemon])
 
+
+// const [allPokemons, setAllPokemons] = useState([]);
+    
+// const indexOfLastPokemon = currentPage * pokemonPerPage;
+// const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
+// const currentPokemon = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon);
+// const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
  return (
      <div>
+         {/* <NavBar /> */}
+         {/* <CreatePokemon /> */}
+         <Link to = {`/addPokemon`}>Create Pokemon!!</Link>
          <SearchBar setSearch = {setSearch}/>
          { search ? searchPokemon && <Link to = {`/cardDetail/${searchPokemon.id}`}><Card name = {searchPokemon.name} image = {searchPokemon.image} types = {searchPokemon.types} key = {searchPokemon.id} /></Link>
          :
-         getPokemons?.map((p) => {
-             return (
-                <Link to = {`/cardDetail/${p.id}`}><Card name = {p.name} image = {p.image} types = {p.types} key = {p.id} /></Link>
-               
-             )
-            })}
+         (getPokemons.length > 0 ? <Paginate /> : <h2>Loading...</h2>)
+           }
+
 
      </div>
  )

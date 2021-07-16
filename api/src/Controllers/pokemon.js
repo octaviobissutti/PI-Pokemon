@@ -1,7 +1,7 @@
 const { Pokemon, Type } = require("../db");
 const axios = require("axios");
 const { URL, POKEMON } = require("../Constants/constants");
-// const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid');
 const db = require("../db");
 
 async function getAllPokemons(req, res) {
@@ -120,36 +120,69 @@ async function getAllPokemons(req, res) {
   }
   
 
-async function addPokemon(req, res) {   
-  const { name, image, types, height, weight, hp, attack, defense, speed } =  req.body;
-  if (!name) {
-    return res.status(400).json({ error: "notNull Violation: It requires a valid name" });
-  } 
-    try {
+// async function addPokemon(req, res) {   
+//   const { name, image, types, height, weight, hp, attack, defense, speed } =  req.body;
+//   if (!name) {
+//     return res.status(400).json({ error: "notNull Violation: It requires a valid name" });
+//   } 
+//     try {
         
-        const createPokemon = await Pokemon.create({
-          name: name,
-          image: image,
-          types: types, 
-          height: height,
-          weight: weight,
-          hp: hp,
-          attack: attack,
-          defense: defense,
-          speed: speed,
-        });
-        await createPokemon.addTypes(req.body.types, { through: 'pokemon_type'});
-        const pokeType = await Pokemon.findOne({
-            where: {name: req.body.name},
-            include: Type
-        })
-        return res.json(pokeType);
-    }  catch (error) {
-        console.log(error);
-        res.status(500).send('Internal Server Error')
-    }
+//         const createPokemon = await Pokemon.create({
+//           name: name,
+//           image: image,
+//           types: types, 
+//           height: height,
+//           weight: weight,
+//           hp: hp,
+//           attack: attack,
+//           defense: defense,
+//           speed: speed,
+//         });
+//         await createPokemon.addTypes(req.body.types, { through: 'pokemon_type'});
+//         const pokeType = await Pokemon.findOne({
+//             where: {name: req.body.name},
+//             include: Type
+//         })
+//         return res.json(pokeType);
+//     }  catch (error) {
+//         console.log(error);
+//         res.status(500).send('Internal Server Error')
+//     }
   
+// };
+
+async function addPokemon (req, res, next) {
+    let type;
+    const id = uuidv4();
+    const pokemon = {...req.body, id};
+    if(!req.body.name) {
+        return res.send({      
+            message: 'tenes que llenar los datos',
+        });
+    }
+    try {
+        const createdPokemon = await Pokemon.create(pokemon);
+        const type1 = await createdPokemon.addTypes(req.body.type1, {through:'pokemon_type'})
+        const type2 = await createdPokemon.addTypes(req.body.type2, {through:'pokemon_type'})
+        const result = await Pokemon.findOne({
+            where: {
+                name: req.body.name
+            },
+            include: Type
+        });
+        return res.send(result);
+    } catch(error) {
+        next(error);
+    }
+
 }
+
+
+
+
+
+
+
 
 
 async function getPokemonById(req, res) {
@@ -189,7 +222,7 @@ async function getPokemonById(req, res) {
                 })
                 
                 if(!dataBase) {
-                    return res.status(404).send({message: 'Pokemon don´t found'})
+                    return res.status(404).send({message: 'Pokemon not found'})
                 }
                 return res.send(dataBase);
                 

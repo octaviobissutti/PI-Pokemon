@@ -3,7 +3,8 @@ import {
     GET_TYPES,
     SEARCH_POKEMONS,
     GET_ID,
-    ADD_POKEMON
+    ADD_POKEMON,
+    FILTER_POKEMON
 } from '../constants';
 
 
@@ -11,8 +12,9 @@ const initialState = {
     getPokemons: [], //Me traigo los 40 pokemons.
     getTypes: [], //Cargo los 20 tipos.
     searchPokemon: {}, //Busco por query(searchBar).
-    addPokemon: [], //Crear nuevo pokemon.
+    createPokemon: [], //Crear nuevo pokemon.
     getDetails: [], //Detalle pokemon.
+    filterPokemons: [] //Filtrado.
 
 };
 
@@ -21,7 +23,7 @@ const initialState = {
         case GET_POKEMONS:
           return {
             ...state,
-            getPokemons: state.addPokemon.concat(action.payload),
+            getPokemons: action.payload,
           };
     
         case GET_TYPES:
@@ -39,16 +41,24 @@ const initialState = {
         case ADD_POKEMON:
           return {
             ...state,
-            addPokemon: action.payload,
+            createPokemon: action.payload,
           };
+
+          
         case GET_ID:
           return {
             ...state,
             getDetails: action.payload,
           };
+
+        case FILTER_POKEMON:
+          return {
+            ...state,
+            filterPokemons: action.payload,
+          };  
           default:
             return state;
-        }
-}
+        };
+};
 
 export default rootReducer;

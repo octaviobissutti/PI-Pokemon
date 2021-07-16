@@ -4,9 +4,15 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('pokemon', {
-    name: { // pokemon.data.name
+                                                                                  
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate:{
+        notNull:{
+          msg: 'Name is required',
+        }
+      }
     },
 
     id:{ // pokemon.data.id
@@ -47,5 +53,8 @@ module.exports = (sequelize) => {
     //   type: DataTypes.BOOLEAN,
     //   defaultValue: false
     // }
-  });
+  },
+   {timestamps: false}
+  );
 };
+
