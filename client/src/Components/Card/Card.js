@@ -17,10 +17,18 @@ const Card = ({image, name, types, height, weight, hp, attack, defense, speed}) 
                   <h5>Name: {name}</h5>
                 </div>
            
-                  <div className = 'type'>
+                  {/* <div className = 'type'>
                 
+                    <h5>Types: {types &&
+                     types.map((el,i) => {
+                      return <li key = {i}>{el.name}</li> 
+                      
+                    })
+                    } </h5>
+                  </div> */}
+                  <div className = 'type'>
                     <h5>Types: {types}</h5>
-                  </div>
+                     </div>
                   <div className = 'height'>
                     <h5>Height: {height}</h5>
                   </div>

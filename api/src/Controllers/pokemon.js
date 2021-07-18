@@ -11,12 +11,10 @@ async function getAllPokemons(req, res) {
     if(name) {
         try {
             var lower = name.toLowerCase();
-            const dataBase = await Pokemon.findOne({
-                where:{
-                    name: lower.charAt(0).toUpperCase() + lower.slice(1)
-                },
-                include: Type
-            })
+            const dataBase = await Pokemon.findAll({
+                include: [Type]
+            });
+
             if(dataBase) {
                 if(dataBase.types.length === 1) {
                     type = dataBase.types[0].name;
@@ -88,14 +86,9 @@ async function getAllPokemons(req, res) {
                 
             })) 
             var dataBase = await Pokemon.findAll({
-                include: {
-                    attributes: ['name'],
-                    model: Type,
-                    through: {
-                        attributes: [],
-                    }
-                }
-            })
+                include: [Type]
+            });
+
              const pokeDb = dataBase.reverse().map(result => {
                 if(result.types.length === 1) {
                     type = result.types[0].name;
@@ -111,10 +104,10 @@ async function getAllPokemons(req, res) {
   
             }) 
             var result = pokeDb.concat(response); 
+            return res.send(result);  
         } catch(error) {
             return res.send('ERROR');
         }
-    return res.send(result);  
     // return res.send(dataBase); 
     }
   }
@@ -122,6 +115,7 @@ async function getAllPokemons(req, res) {
 
 // async function addPokemon(req, res) {   
 //   const { name, image, types, height, weight, hp, attack, defense, speed } =  req.body;
+//   var prueba = [];
 //   if (!name) {
 //     return res.status(400).json({ error: "notNull Violation: It requires a valid name" });
 //   } 
@@ -138,10 +132,12 @@ async function getAllPokemons(req, res) {
 //           defense: defense,
 //           speed: speed,
 //         });
+        
 //         await createPokemon.addTypes(req.body.types, { through: 'pokemon_type'});
+//         // await createPokemon.setTypes(types)
 //         const pokeType = await Pokemon.findOne({
 //             where: {name: req.body.name},
-//             include: Type
+//             include: { model: Type}
 //         })
 //         return res.json(pokeType);
 //     }  catch (error) {
@@ -151,32 +147,30 @@ async function getAllPokemons(req, res) {
   
 // };
 
-async function addPokemon (req, res, next) {
-    let type;
+async function addPokemon(req, res) {
     const id = uuidv4();
-    const pokemon = {...req.body, id};
-    if(!req.body.name) {
-        return res.send({      
-            message: 'tenes que llenar los datos',
-        });
-    }
+    let data = { ...req.body, id }; 
+    if (!req.body.name) return res.status(400).send('Body vacio!!!');
     try {
-        const createdPokemon = await Pokemon.create(pokemon);
-        const type1 = await createdPokemon.addTypes(req.body.type1, {through:'pokemon_type'})
-        const type2 = await createdPokemon.addTypes(req.body.type2, {through:'pokemon_type'})
-        const result = await Pokemon.findOne({
-            where: {
-                name: req.body.name
-            },
-            include: Type
+        const createdPoke = await Pokemon.create({
+            name: data.name,
+            hp: parseInt(data.hp),
+            attack: parseInt(data.attack),
+            defense: parseInt(data.defense),
+            speed: parseInt(data.speed),
+            height: parseInt(data.height), 
+            weight: parseInt(data.weight),
         });
-        return res.send(result);
-    } catch(error) {
-        next(error);
+        await createdPoke.setTypes(data.types);
+        // await createdPoke.addTypes(req.body.types2, { through: 'pokemon_type' });
+       
+        return res.json({message: 'Pokemon created succesfully', pokemon: newPokemon});
     }
-
-}
-
+    catch (error) {
+        console.log(error);
+        res.status(500).send('Internal Server Error')
+    }
+};
 
 
 
@@ -186,7 +180,7 @@ async function addPokemon (req, res, next) {
 
 
 async function getPokemonById(req, res) {
-    let type;
+    var type;
     let id = req.params.id; 
     if(id) {
         try {
@@ -220,11 +214,29 @@ async function getPokemonById(req, res) {
                     },
                     include: [Type] 
                 })
+
+                if(dataBase.types.length === 1) {
+                    type = dataBase.types[0].name;
+                } else {
+                    type = dataBase.types[0].name + " " + dataBase.types[1].name;
+                }
+                var finalPokemon ={
+                    name : dataBase.name.charAt(0).toUpperCase() + dataBase.name.slice(1),
+                    id: dataBase.id,
+                    image: "https://i.playboard.app/p/AAUvwngrNsz0VgH-cA-girh64i7q941e6mxWACzbtr7a0A/default.jpg",
+                    types: type,
+                    height: dataBase.height,
+                    weight: dataBase.weight,
+                    hp: dataBase.hp,
+                    attack: dataBase.attack,
+                    defense: dataBase.defense,
+                    speed: dataBase.speed
+                } 
                 
                 if(!dataBase) {
                     return res.status(404).send({message: 'Pokemon not found'})
                 }
-                return res.send(dataBase);
+                return res.send(finalPokemon);
                 
             }
            

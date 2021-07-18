@@ -1,44 +1,57 @@
-import { useSelector } from 'react-redux';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Card from '../Card/Card';
+// import { useSelector, useDispatch } from 'react-redux';
+// import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
+// import Card from '../Card/Card';
+// import './Paginate.css';
+// import { getAllPokemons } from '../../Redux/Actions/actions';
 
 
-export default function Paginate() {
-    let dataLimit = 12;
-    const getPokemons = useSelector((state) => state.getPokemons);
-    // const [pages] = useState(Math.round(getPokemons.length / dataLimit));
+// export default function Paginate() {
+//     let dataLimit = 12;
+//     const getPokemons = useSelector((state) => state.getPokemons);
+//     const [pages] = useState(Math.ceil(getPokemons.length / dataLimit));
 
-    const [currentPage, setCurrentPage] = useState(1);
+//     const [currentPage, setCurrentPage] = useState(1);
 
-    function goToNextPage() { 
-        setCurrentPage((pages) => pages + 1)
-    }
+//     const dispatch = useDispatch();
 
-    function goToPreviousPage() {
-        setCurrentPage((pages) => pages - 1);
-    }
 
-    const getPaginatedData = () => {
-        const startIndex = currentPage * dataLimit - dataLimit
-        const endIndex = startIndex + dataLimit
-        return getPokemons.slice(startIndex, endIndex)
-    };    
+//     function goToNextPage() { 
+//         setCurrentPage((pages) => pages + 1)
+//     }
 
-    /* const paginate = (pageNumber) => setCurrentPage(pageNumber); */
+//     function goToPreviousPage() {
+//         setCurrentPage((pages) => pages - 1);
+//     }
 
-    return (
-        <div>
-          <button onClick={goToPreviousPage} >Prev</button> 
-           
-          <button onClick={goToNextPage} >Next</button>
 
-          {getPaginatedData().map(poke => (   
-          <ul key = {poke.id}> 
-            <Link  to = {`/cardDetail/${poke.id}`} /* mostrar el res de getDetails */ >          
-              <Card poke = {poke} key = {poke.id} name = {poke.name} image = {poke.image} types = {poke.types}/>
-            </Link>
-          </ul>))}        
-        </div>
-    )
-}
+//     // useEffect(() => {
+//     //    dispatch(getAllPokemons())
+//     // }, []);
+
+
+//     const getPaginatedData = () => {
+//         const startIndex = currentPage * dataLimit - dataLimit
+//         const endIndex = startIndex + dataLimit
+//         return getPokemons.slice(startIndex, endIndex)
+//     };    
+
+
+//     return (
+//         <div>
+//           <div>
+//           <button className={`${currentPage === 1 ? 'disabled' : ''}`} onClick={goToPreviousPage} >Prev</button>       
+//           <h5 >Pag: {currentPage}</h5>     
+//           <button className={`${currentPage === pages ? 'disabled' : ''}`} onClick={goToNextPage} >Next</button>
+//           </div>
+//           {getPaginatedData() 
+//           .map(poke => (   
+//           <ul key = {poke.id}> 
+//             <Link  to = {`/cardDetail/${poke.id}`} >          
+//               <Card poke = {poke} key = {poke.id} name = {poke.name} image = {poke.image} types = {poke.types}/>
+//             </Link>
+//           </ul>))
+//           }        
+//         </div>
+//     )
+// }

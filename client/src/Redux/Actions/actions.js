@@ -63,9 +63,9 @@ export const getById = (id) => async (dispatch) => {
 };
 
 //Crear pokemon.
-export const addPokemon = (input) => async (dispatch) => {
+export const addPokemon = (pokemon) => async (dispatch) => {
     try {
-        const res = await axios.get("http://localhost:3001/pokemon", input);
+        const res = await axios.post("http://localhost:3001/pokemon", pokemon);
         dispatch({
             type: ADD_POKEMON,
             payload: res.data
@@ -100,7 +100,7 @@ export const filterPoke = (source, array) => (dispatch) => {
 export const orderOption = (option, array) => (dispatch) => {
     if(option === 'az') {
       const one = array.sort((a, b) => {
-        const first = a.one;
+        const first = a.name;
         const last = b.name;
         if(first < last ){
           return -1;
@@ -133,6 +133,7 @@ export const orderOption = (option, array) => (dispatch) => {
       const attack = array.sort((a,b) => b.attack - a.attack)
       dispatch({type: FILTER_POKEMON, payload:[...attack]}) 
     }
+  
     if(option === 'attack-'){
       const attack = array.sort((a,b) => a.attack - b.attack)
       dispatch({type: FILTER_POKEMON, payload:[...attack]}) 

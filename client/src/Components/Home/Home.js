@@ -6,7 +6,9 @@ import { getAllPokemons, getAllTypes} from '../../Redux/Actions/actions';
 import  { useSelector, useDispatch } from 'react-redux';
 // import CreatePokemon from '../CreatePokemon/CreatePokemon';
 // import NavBar from '../Navbar/NavBar';
-import Paginate from '../Paginate/Paginate';
+// import Paginate from '../Paginate/Paginate';
+import Filter from '../Filter/Filter';
+import './Home.css';
 
 function Home() {
 
@@ -15,19 +17,21 @@ const getPokemons = useSelector((state) => state.getPokemons);
 const getTypes = useSelector((state) => state.getTypes);
 const searchPokemon = useSelector((state) => state.searchPokemon);
 
+
+
 const [search, setSearch] = useState(false);
 
 useEffect(() => {
-    if(getPokemons) {
-        dispatch(getAllPokemons())
-    }
-},[])
+    
+ dispatch(getAllPokemons())
+    
+},[dispatch])
 
 useEffect(() => {
     if(getTypes) {
         dispatch(getAllTypes())
     }
-}, [])
+}, [dispatch])
 
 
 useEffect(() => {
@@ -37,27 +41,54 @@ useEffect(() => {
 }, [searchPokemon])
 
 
-// const [allPokemons, setAllPokemons] = useState([]);
-    
-// const indexOfLastPokemon = currentPage * pokemonPerPage;
-// const indexOfFirstPokemon = indexOfLastPokemon - pokemonPerPage;
-// const currentPokemon = allPokemons.slice(indexOfFirstPokemon, indexOfLastPokemon);
-// const paginate = (pageNumber) => setCurrentPage(pageNumber);
+const [currentPage, setCurrentPage] = useState(1);
+const [pokemonsPerPage] = useState(12);
+
+
+const indexOfLastPost = currentPage * pokemonsPerPage;
+const indexOfFirstPost = indexOfLastPost - pokemonsPerPage;
+const currentPokemons = getPokemons.slice(indexOfFirstPost, indexOfLastPost);
+
+const pageNumber = Math.ceil(getPokemons.length / pokemonsPerPage);
+
+const nextPage = () => {
+    if(currentPage < pageNumber) setCurrentPage(currentPage + 1);
+    else setCurrentPage(1)
+}
+
+const prePage = () => {
+    if(currentPage !== 1)  setCurrentPage(currentPage - 1);
+    else setCurrentPage(pageNumber)
+}
+
 
  return (
      <div>
+         <div>
+         <Filter />
          {/* <NavBar /> */}
          {/* <CreatePokemon /> */}
          <Link to = {`/addPokemon`}>Create Pokemon!!</Link>
          <SearchBar setSearch = {setSearch}/>
-         { search ? searchPokemon && <Link to = {`/cardDetail/${searchPokemon.id}`}><Card name = {searchPokemon.name} image = {searchPokemon.image} types = {searchPokemon.types} key = {searchPokemon.id} /></Link>
+         </div>
+         <div>
+         { search ? (searchPokemon && <Link to = {`/cardDetail/${searchPokemon.id}`}><Card name = {searchPokemon.name} image = {searchPokemon.image} types = {searchPokemon.types} key = {searchPokemon.id} /></Link>)
          :
-         (getPokemons.length > 0 ? <Paginate /> : <h2>Loading...</h2>)
-           }
+         (currentPokemons.length > 0 && currentPokemons.map((pokemon)=> (
+            <Link to = {`/cardDetail/${pokemon.id}`}><Card name = {pokemon.name} image = {pokemon.image} types = {pokemon.types} key = {pokemon.id} /></Link>)
+    )) 
+    }
+    </div>
+    <div>
+        <button className={`${currentPage === 1 ? 'disabled' : ''}`} onClick={() => {prePage()}}>Previous</button>
+        <button className={`${currentPage === pageNumber ? 'disabled' : ''}`} onClick={() => {nextPage()}}>Next</button>
+    </div>
+    {/* className={`${currentPage === 1 ? 'disabled' : ''}`} */}
 
-
-     </div>
+    
+</div>
  )
+
 
 }
 

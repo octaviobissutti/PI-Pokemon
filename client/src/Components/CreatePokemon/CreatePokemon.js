@@ -6,8 +6,7 @@ import { addPokemon, getAllTypes } from '../../Redux/Actions/actions';
 
 export default function CreatePokemon() {
 
-    const createPokemon = useSelector(state => state.createPokemon);
-    // const getTypes = useSelector(state => state.getTypes);
+    const getTypes = useSelector(state => state.getTypes);
 
     const dispatch = useDispatch();
 
@@ -17,8 +16,7 @@ export default function CreatePokemon() {
  
     const [input, setInput] = useState({
        name: '',
-       type1: '',
-       type2: '',
+       types: [],
        hp: '',
        attack: '',
        defense: '',
@@ -32,24 +30,31 @@ export default function CreatePokemon() {
       const [errors, setErrors] = useState({});
     
       const handleInputChange = function(e) {
-        setInput({
-          ...input,
-          [e.target.name]: e.target.value
-        });
+        if(e.target.name === 'type1' || e.target.name === 'type2' ) {
+          setInput({
+            ...input,
+            types: [...input.types, e.target.value]
+          })
+        } else {
+          setInput({
+            ...input,
+            [e.target.name]: e.target.value
+          });
+        };
+        
         setErrors(validate({
           ...input,
           [e.target.name]: e.target.value
         }));
       }
 
-      const handleSubmit = (e) => {
+      const handleSubmit =  (e) => {
         e.preventDefault();
-        addPokemon(input);
         console.log(input);
+        addPokemon(input);
         setInput({
           name: '',
-          type1: '',
-          type2: '',
+          types: [],
           hp: '',
           attack: '',
           defense: '',
@@ -59,12 +64,7 @@ export default function CreatePokemon() {
         });
 
     };
-        
-      // useEffect(() => {
-      //   if()
-      // })
-      
-    
+  
       
       return (
         <form onSubmit={handleSubmit}>
@@ -100,6 +100,28 @@ export default function CreatePokemon() {
               <label>Weight:</label>
               <input className={errors.weigth && 'danger'} type="number" name="weight" onChange={handleInputChange} value={input.weight} />
             </div>
+          <div>
+              <label>Type-1</label>
+              <select className={errors.type1 && "type1"} name="type1" value={input.id} onChange={handleInputChange}>
+              <option value='null'>null</option>
+              {getTypes && getTypes.map(t => (
+                <option value = {t.id} name = {t.name}>{t.name}</option>
+              ))}
+               {errors.type1 && ( <p className="type1">{errors.type1}</p>)}
+              </select>
+              <br/>
+
+            </div>
+          <div>
+          <label>Type-2</label>
+              <select className={errors.type2 && "type2"} name="type2" value={input.id} onChange={handleInputChange}>
+              <option value='null'>null</option>
+              {getTypes && getTypes.map(t => (
+                <option value = {t.id} name = {t.name}>{t.name}</option>
+              ))}
+               {errors.type2 && ( <p className="type2">{errors.type2}</p>)}
+              </select>
+            </div>    
             </div>
             </div>
             </div>
@@ -121,3 +143,4 @@ export default function CreatePokemon() {
     }
     return errors;
 };
+

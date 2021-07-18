@@ -12,7 +12,7 @@ const initialState = {
     getPokemons: [], //Me traigo los 40 pokemons.
     getTypes: [], //Cargo los 20 tipos.
     searchPokemon: {}, //Busco por query(searchBar).
-    createPokemon: [], //Crear nuevo pokemon.
+    createPokemon: {}, //Crear nuevo pokemon.
     getDetails: [], //Detalle pokemon.
     filterPokemons: [] //Filtrado.
 
@@ -44,7 +44,7 @@ const initialState = {
             createPokemon: action.payload,
           };
 
-          
+    
         case GET_ID:
           return {
             ...state,
