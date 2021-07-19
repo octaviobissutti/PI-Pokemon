@@ -6,9 +6,10 @@
 // //   return res.status(200).json(types);
 // // }
 
-const { Type } = require('../db.js');
+const { Type, Pokemon } = require('../db.js');
 const axios = require ('axios');
 const { URL, TYPE } = require('../Constants/constants');
+
 
 async function getAllTypes (req, res) {
     

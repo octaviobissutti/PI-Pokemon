@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const db = require("../db");
 
 async function getAllPokemons(req, res) {
-    let type;
+    // let type;
     let name = req.query.name;
     
     if(name) {
@@ -19,11 +19,12 @@ async function getAllPokemons(req, res) {
             })
 
             if(dataBase) {
-                if(dataBase.types.length === 1) {
-                    type = dataBase.types[0].name;
-                } else {
-                    type = dataBase.types[0].name + " " + dataBase.types[1].name;
-                }
+                // if(dataBase.types.length === 1) {
+                //     type = dataBase.types[0].name; 
+                // } else {
+                //     type = dataBase.types[0].name + " " + dataBase.types[1].name;
+                // }
+                let type = dataBase.types.map((el) => el.name)
                 var pokeDb ={
                     name : dataBase.name.charAt(0).toUpperCase() + dataBase.name.slice(1),
                     id: dataBase.id,
@@ -43,17 +44,17 @@ async function getAllPokemons(req, res) {
 
                 let api = await axios.get(`${URL}${POKEMON}/${lower}`); 
                 if(api) {
-                    if(api.data.types.length === 1) {
-                        type = api.data.types[0].type.name;
-                    } else {
-                        type = api.data.types[0].type.name + " " + api.data.types[1].type.name;
-                    }
-                
+                    // if(api.data.types.length === 1) {
+                    //     type = api.data.types[0].type.name;
+                    // } else {
+                    //     type = api.data.types[0].type.name + " " + api.data.types[1].type.name;
+                    // }
+                    let type2 = api.data.types.map(el => el.type.name);
                     var pokeApi = {
                         name: api.data.name.charAt(0).toUpperCase() + api.data.name.slice(1),
                         id: api.data.id,
                         image: api.data.sprites.other.dream_world.front_default,
-                        types: type,
+                        types: type2,
                         height: api.data.height,
                         weight: api.data.weight,
                         hp: api.data.stats[0].base_stat,
@@ -76,16 +77,18 @@ async function getAllPokemons(req, res) {
             const api40 = first.data.results.concat(next.data.results);
             const response = await Promise.all(api40.map(async pokemon => {
                 let url = await axios.get(pokemon.url)
-                if(url.data.types.length === 1) {
-                    type = url.data.types[0].type.name;
-                } else {
-                    type = url.data.types[0].type.name + " " + url.data.types[1].type.name
-                }
+                // if(url.data.types.length === 1) {
+                //     type = url.data.types[0].type.name;
+                // } else {
+                //     type = url.data.types[0].type.name + " " + url.data.types[1].type.name
+                // }
+                let type = url.data.types.map(el => el.type.name)
                 return  {
                     name: url.data.name.charAt(0).toUpperCase() + url.data.name.slice(1),
                     image: url.data.sprites.other.dream_world.front_default,
                     id: url.data.id, 
-                    types: type
+                    types: type,
+                    attack: url.data.stats[1].base_stat
                 }
                 
             })) 
@@ -94,20 +97,43 @@ async function getAllPokemons(req, res) {
             });
 
              const pokeDb = dataBase.reverse().map(result => {
-                if(result.types.length === 1) {
-                    type = result.types[0].name;
-                } else {
-                    type = result.types[0].name + " " + result.types[1].name;
-                }
+                // if(result.types.length === 1) {
+                //     type = result.types[0].name;
+                // } else {
+                //     type = result.types[0].name + " " + result.types[1].name;
+                // }
+                let type = result.types.map(el => el.name);
                 return {
                     name: result.name.charAt(0).toUpperCase() + result.name.slice(1),
                     image: "https://i.playboard.app/p/AAUvwngrNsz0VgH-cA-girh64i7q941e6mxWACzbtr7a0A/default.jpg",
                     id: result.id,
                     types: type,
+                    attack: result.attack
                 }
   
             }) 
             var result = pokeDb.concat(response); 
+            console.log('RESULT: ', result.length);
+            let caso  = req.query.caso;
+            console.log('REQ.QUERY.CASO : ', req.query.caso);
+            if(caso) {
+                console.log('CASO :', caso);
+                if(caso === 'api') {
+                    const api = result.filter(c => typeof c.id === 'number');
+                     return res.status(200).json(api);
+                  } 
+                  if(caso === 'db') {
+                   const db = result.filter(c => typeof c.id === 'string');
+                    return res.status(200).json(db);
+                  }
+
+            }
+            if(req.query.type) {
+                const allTypes = result.filter(t => t.types.includes(req.query.type))
+                return res.status(200).json(allTypes);
+            
+            }
+
             return res.send(result);  
         } catch(error) {
             return res.send('ERROR');
@@ -185,18 +211,18 @@ async function addPokemon(req, res) {
 
 
 async function getPokemonById(req, res) {
-    var type;
+    // var type;
     let id = req.params.id; 
     if(id) {
         try {
             if(!id.includes('-')) {
                 var api = await axios.get(`${URL}${POKEMON}/${id}`);
-                if(api?.data.types.length === 1) {
-                    type = api.data.types[0].type.name;
-                } else {
-                    type = api.data.types[0].type.name + " " + api.data.types[1].type.name;
-                }
-
+                // if(api?.data.types.length === 1) {
+                //     type = api.data.types[0].type.name;
+                // } else {
+                //     type = api.data.types[0].type.name + " " + api.data.types[1].type.name;
+                // }
+                let type = api.data.types.map(el => el.type.name);
                 var poke = {
                     name: api.data.name,
                     id: api.data.id,
@@ -220,11 +246,12 @@ async function getPokemonById(req, res) {
                     include: [Type] 
                 })
 
-                if(dataBase.types.length === 1) {
-                    type = dataBase.types[0].name;
-                } else {
-                    type = dataBase.types[0].name + " " + dataBase.types[1].name;
-                }
+                // if(dataBase.types.length === 1) {
+                //     type = dataBase.types[0].name;
+                // } else {
+                //     type = dataBase.types[0].name + " " + dataBase.types[1].name;
+                // }
+                let type = dataBase.types.map(el => el.name);
                 var finalPokemon ={
                     name : dataBase.name.charAt(0).toUpperCase() + dataBase.name.slice(1),
                     id: dataBase.id,
@@ -298,6 +325,8 @@ async function getPokemonById(req, res) {
 //     return  res.send('pokemon created ok');
    
 // }
+
+   
 
 module.exports = {
   getAllPokemons,
