@@ -2,7 +2,7 @@ import React from 'react';
 import './Card.css';
 
 
-const Card = ({image, name, types, height, weight, hp, attack, defense, speed}) => {
+const Card = ({image, name, types, height, weight, hp, attack, defense, speed, id}) => {
 
   return (
     <div>
@@ -14,7 +14,7 @@ const Card = ({image, name, types, height, weight, hp, attack, defense, speed}) 
               <div>
                 <img src={image} alt='Img not found' className='img' width = '200px' height = '200px' />
                 <div className='name'>
-                  <h5>Name: {name}</h5>
+                  <h5>{name}</h5>
                 </div>
            
                   {/* <div className = 'type'>
@@ -52,11 +52,11 @@ const Card = ({image, name, types, height, weight, hp, attack, defense, speed}) 
           </div>
           :
           <div>
-            <div className='card-home'>
-              <div>
-               <img src={image} alt='Img not found' className='img-home' width = '200px' height = '200px' />
-                <div className='name-home'>
-                  <h5>Name: {name}</h5>
+            <div className='row center'>
+              <div key={id} className = 'card'>
+               <img src={image} alt='Img not found' className='medium'/>
+                <div className='card-body'>
+                  <h5>{name}</h5>
                 </div>           
                 <div className = 'type-home'>
                   <h5>Types: {types}</h5>
@@ -72,3 +72,4 @@ const Card = ({image, name, types, height, weight, hp, attack, defense, speed}) 
 
 
 export default Card;
+

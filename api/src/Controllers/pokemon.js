@@ -11,9 +11,12 @@ async function getAllPokemons(req, res) {
     if(name) {
         try {
             var lower = name.toLowerCase();
-            const dataBase = await Pokemon.findAll({
+             const dataBase = await Pokemon.findOne({
+                where:{
+                    name: lower
+                },
                 include: [Type]
-            });
+            })
 
             if(dataBase) {
                 if(dataBase.types.length === 1) {
@@ -34,6 +37,7 @@ async function getAllPokemons(req, res) {
                     speed: dataBase.speed
       
                 } 
+                console.log('POKEDB--> ', pokeDb)
                 return res.send(pokeDb);
             } else {
 
@@ -150,7 +154,7 @@ async function getAllPokemons(req, res) {
 async function addPokemon(req, res) {
     const id = uuidv4();
     let data = { ...req.body, id }; 
-    if (!req.body.name) return res.status(400).send('Body vacio!!!');
+    if (!req.body.name) return res.status(400).send('Name is required');
     try {
         const createdPoke = await Pokemon.create({
             name: data.name,
@@ -161,10 +165,11 @@ async function addPokemon(req, res) {
             height: parseInt(data.height), 
             weight: parseInt(data.weight),
         });
+        console.log('CREATEDPOKE: ', createdPoke);
         await createdPoke.setTypes(data.types);
         // await createdPoke.addTypes(req.body.types2, { through: 'pokemon_type' });
        
-        return res.json({message: 'Pokemon created succesfully', pokemon: newPokemon});
+        return res.json({message: 'Pokemon created succesfully', pokemon: createdPoke});
     }
     catch (error) {
         console.log(error);

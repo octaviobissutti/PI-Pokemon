@@ -41,7 +41,7 @@ export default function CreatePokemon() {
             [e.target.name]: e.target.value
           });
         };
-        
+
         setErrors(validate({
           ...input,
           [e.target.name]: e.target.value
@@ -71,38 +71,38 @@ export default function CreatePokemon() {
           <Link to = {`/home`}>Home</Link>
             <div>
               <label>PokeName:</label>
-              <input className={errors.PokeName && 'danger'} type="text" name="name" onChange={handleInputChange} value={input.name} />
+              <input className={errors.PokeName && 'danger'} type="text" name="name" onChange={handleInputChange} value={input.name} required/>
               {errors.name && (
                 <p className="danger">{errors.name}</p>
                 )}
                
               <div>
               <label>Hp:</label>
-              <input className={errors.hp && 'danger'} type="number" name="hp" onChange={handleInputChange} value={input.hp} />
+              <input className={errors.hp && 'danger'} type="number" name="hp" onChange={handleInputChange} value={input.hp} required/>
             
          <div>
               <label>Attack:</label>
-              <input className={errors.attack && 'danger'} type="number" name="attack" onChange={handleInputChange} value={input.attack} />
+              <input className={errors.attack && 'danger'} type="number" name="attack" onChange={handleInputChange} value={input.attack} required/>
               
          <div>
               <label>Defense:</label>
-              <input className={errors.defense && 'danger'} type="number" name="defense" onChange={handleInputChange} value={input.defense} />
+              <input className={errors.defense && 'danger'} type="number" name="defense" onChange={handleInputChange} value={input.defense} required/>
              
          <div>
               <label>Speed:</label>
-              <input className={errors.speed && 'danger'} type="number" name="speed" onChange={handleInputChange} value={input.speed} />
+              <input className={errors.speed && 'danger'} type="number" name="speed" onChange={handleInputChange} value={input.speed} required/>
               
          <div>
               <label>Height:</label>
-              <input className={errors.heigth && 'danger'} type="number" name="height" onChange={handleInputChange} value={input.height} />
+              <input className={errors.heigth && 'danger'} type="number" name="height" onChange={handleInputChange} value={input.height} required />
             
          <div>
               <label>Weight:</label>
-              <input className={errors.weigth && 'danger'} type="number" name="weight" onChange={handleInputChange} value={input.weight} />
+              <input className={errors.weigth && 'danger'} type="number" name="weight" onChange={handleInputChange} value={input.weight} required/>
             </div>
           <div>
               <label>Type-1</label>
-              <select className={errors.type1 && "type1"} name="type1" value={input.id} onChange={handleInputChange}>
+              <select className={errors.type1 && "type1"} name="type1" value={input.id} onChange={handleInputChange} required>
               <option value='null'>null</option>
               {getTypes && getTypes.map(t => (
                 <option value = {t.id} name = {t.name}>{t.name}</option>
@@ -114,7 +114,7 @@ export default function CreatePokemon() {
             </div>
           <div>
           <label>Type-2</label>
-              <select className={errors.type2 && "type2"} name="type2" value={input.id} onChange={handleInputChange}>
+              <select className={errors.type2 && "type2"} name="type2" value={input.id} onChange={handleInputChange} required >
               <option value='null'>null</option>
               {getTypes && getTypes.map(t => (
                 <option value = {t.id} name = {t.name}>{t.name}</option>
@@ -130,6 +130,13 @@ export default function CreatePokemon() {
             </div>
             {/* <button type="submit">CREATE</button> */}
             <button onClick={()=>dispatch(addPokemon(input))}>CREATE</button>
+            {
+                  alert.create ? (
+                      <div className='create--confirm'>
+                          <h3 className='message--create'>Pokemon created succesfully!</h3>
+                      </div>
+                  ) : null
+              }
           </form>
         )
 } 
@@ -141,6 +148,42 @@ export default function CreatePokemon() {
     } else if (!/^[A-Za-z]+$/.test(input.name)) {
       errors.name = 'PokeName must be a text string';
     }
+    if (!input.hp) {
+      errors.hp = 'Hp is required';
+    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.hp)) {
+      errors.hp = 'Hp must be between 1 and 255';
+    }
+    if (!input.attack) {
+      errors.attack = 'Attack is required';
+    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.attack)) {
+      errors.attack = 'Attack must be between 1 and 255';
+    }
+    if (!input.defense) {
+      errors.defense = 'Defense is required';
+    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.defense)) {
+      errors.defense = 'Defense must be between 1 and 255';
+    }
+    if (!input.speed) {
+      errors.speed = 'Speed is required';
+    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.speed)) {
+      errors.speed = 'Speed must be between 1 and 255';
+    }
+    if (!input.height) {
+      errors.height = 'Heigth is required';
+    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.height)) {
+      errors.height = 'Heigth must be between 1 and 255';
+    }
+    if (!input.weight) {
+      errors.weight = 'Weigth is required';
+    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.weight)) {
+      errors.weight = 'Weigth must be between 1 and 255';
+    }
+    if(!input.types) {
+      errors.types = 'Types can´t be null'
+    }
     return errors;
 };
 
+//if (inputs.genres[0] === undefined) {
+  //errors.genres = 'Géneros son requeridos';
+//}

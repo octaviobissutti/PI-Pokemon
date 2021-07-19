@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 import { getAllPokemons, getAllTypes} from '../../Redux/Actions/actions';
 import  { useSelector, useDispatch } from 'react-redux';
 // import CreatePokemon from '../CreatePokemon/CreatePokemon';
-// import NavBar from '../Navbar/NavBar';
-// import Paginate from '../Paginate/Paginate';
+import NavBar from '../Navbar/NavBar';
 import Filter from '../Filter/Filter';
 import './Home.css';
 
@@ -64,26 +63,25 @@ const prePage = () => {
 
  return (
      <div>
-         <div>
+         <div> 
+         <NavBar />
          <Filter />
-         {/* <NavBar /> */}
          {/* <CreatePokemon /> */}
-         <Link to = {`/addPokemon`}>Create Pokemon!!</Link>
          <SearchBar setSearch = {setSearch}/>
          </div>
          <div>
-         { search ? (searchPokemon && <Link to = {`/cardDetail/${searchPokemon.id}`}><Card name = {searchPokemon.name} image = {searchPokemon.image} types = {searchPokemon.types} key = {searchPokemon.id} /></Link>)
+         { search ? searchPokemon && <Link className="link" to = {`/cardDetail/${searchPokemon.id}`} ><Card name = {searchPokemon.name} image = {searchPokemon.image} types = {searchPokemon.types} key = {searchPokemon.id} /></Link>
          :
          (currentPokemons.length > 0 && currentPokemons.map((pokemon)=> (
-            <Link to = {`/cardDetail/${pokemon.id}`}><Card name = {pokemon.name} image = {pokemon.image} types = {pokemon.types} key = {pokemon.id} /></Link>)
+            <Link className="link" to = {`/cardDetail/${pokemon.id}`}><Card name = {pokemon.name} image = {pokemon.image} types = {pokemon.types} key = {pokemon.id} /></Link>)
     )) 
     }
     </div>
     <div>
         <button className={`${currentPage === 1 ? 'disabled' : ''}`} onClick={() => {prePage()}}>Previous</button>
+        <h5 >Pag: {currentPage}</h5>     
         <button className={`${currentPage === pageNumber ? 'disabled' : ''}`} onClick={() => {nextPage()}}>Next</button>
     </div>
-    {/* className={`${currentPage === 1 ? 'disabled' : ''}`} */}
 
     
 </div>

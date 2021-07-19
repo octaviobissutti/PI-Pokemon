@@ -1,0 +1,6 @@
+.filter {
+    display: flex;
+    justify-self: unset;
+    justify-content: flex-end;
+    color: white;
+}

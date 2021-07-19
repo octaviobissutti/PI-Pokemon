@@ -18,7 +18,7 @@ export const getAllPokemons = () => async (dispatch) => {
             payload: res.data
         });
     } catch (err) {
-        console.log(err)
+        console.log(err) 
     }
  };
 
@@ -133,7 +133,7 @@ export const orderOption = (option, array) => (dispatch) => {
       const attack = array.sort((a,b) => b.attack - a.attack)
       dispatch({type: FILTER_POKEMON, payload:[...attack]}) 
     }
-  
+    
     if(option === 'attack-'){
       const attack = array.sort((a,b) => a.attack - b.attack)
       dispatch({type: FILTER_POKEMON, payload:[...attack]}) 

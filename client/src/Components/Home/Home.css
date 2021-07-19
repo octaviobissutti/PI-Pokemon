@@ -3,3 +3,8 @@
     box-shadow: none;
     color: #999;
   }
+
+ .link {
+   text-decoration: none;
+   color: black;
+ } 
