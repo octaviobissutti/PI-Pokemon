@@ -73,7 +73,7 @@ a {
 
 .bar:hover {
     background-color: rgba(82, 76, 76, 0.568);
-    color: black;
+    color: #dddddd;
     transition: 500ms;
 }
 

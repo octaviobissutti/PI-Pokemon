@@ -1,3 +1,19 @@
+.home {
+
+  background-color: coral;
+}
+.container {
+  display:grid;
+  gap: 1px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%,30rem), 1fr));
+}
+
+.filter-home {
+  display: block;
+  width: 100%;
+  margin: auto;
+}
+
 .disabled {
     pointer-events: none;
     box-shadow: none;
@@ -8,3 +24,8 @@
    text-decoration: none;
    color: black;
  } 
+
+ .paginate {
+   display: flex;
+   margin: auto;
+ }

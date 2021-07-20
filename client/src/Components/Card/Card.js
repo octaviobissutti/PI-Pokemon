@@ -3,8 +3,9 @@ import './Card.css';
 
 
 const Card = ({image, name, types, height, weight, hp, attack, defense, speed, id}) => {
-
+  console.log('TYPES: ', types);
   return (
+    
     <div>
 
       {
@@ -59,7 +60,10 @@ const Card = ({image, name, types, height, weight, hp, attack, defense, speed, i
                   <span className ="span">{name}</span>
                 </div>           
                 <div className = 'type-home'>
-                  <h5>Types: {types}</h5>
+
+                  <h5>Types: {types && types.map((el,i) => {
+                    return <li>{el}</li>
+                  })}</h5>
                   
                 </div>
               </div>

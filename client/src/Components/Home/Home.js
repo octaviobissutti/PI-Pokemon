@@ -6,7 +6,7 @@ import { getAllPokemons, getAllTypes} from '../../Redux/Actions/actions';
 import  { useSelector, useDispatch } from 'react-redux';
 import CreatePokemon from '../CreatePokemon/CreatePokemon';
 // import NavBar from '../Navbar/NavBar';
-// import Filter from '../Filter/Filter';
+import Filter from '../Filter/Filter';
 import './Home.css';
 
 function Home() {
@@ -33,11 +33,11 @@ useEffect(() => {
 }, [dispatch])
 
 
-useEffect(() => {
-    if(!searchPokemon) {
-        alert('Pokemon not found :(');
-    }
-}, [searchPokemon])
+// useEffect(() => {
+//     if(!searchPokemon) {
+//         alert('Pokemon not found :(');
+//     }
+// }, [searchPokemon])
 
 
 const [currentPage, setCurrentPage] = useState(1);
@@ -62,14 +62,16 @@ const prePage = () => {
 
 
  return (
-     <div>
+     <div className = "home">
          <div> 
          {/* <NavBar /> */}
-         {/* <Filter /> */}
          {/* <CreatePokemon /> */}
          <SearchBar setSearch = {setSearch}/>
+         <div className = "filter-home">
+         <Filter />
          </div>
-         <div>
+         </div>
+         <div className = "container">
          { search ? searchPokemon && <Link className="link" to = {`/cardDetail/${searchPokemon.id}`} ><Card name = {searchPokemon.name} image = {searchPokemon.image} types = {searchPokemon.types} key = {searchPokemon.id} /></Link>
          :
          (currentPokemons.length > 0 && currentPokemons.map((pokemon)=> (
@@ -77,7 +79,7 @@ const prePage = () => {
     )) 
     }
     </div>
-    <div>
+    <div className = "paginate">
         <button className={`${currentPage === 1 ? 'disabled' : ''}`} onClick={() => {prePage()}}>Previous</button>
         <h5 >Pag: {currentPage}</h5>     
         <button className={`${currentPage === pageNumber ? 'disabled' : ''}`} onClick={() => {nextPage()}}>Next</button>

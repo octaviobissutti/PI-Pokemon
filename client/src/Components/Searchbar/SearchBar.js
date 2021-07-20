@@ -40,7 +40,7 @@ function SearchBar({setSearch}) {
             <form>
             <input className = "bar"
             type = "text"
-            placeholder = "Buscar.."
+            placeholder = "Search.."
             onChange = {(e) => handleInputChange(e)}
             />
             <button className = "btn" onClick = {(e) => handleClick(e)}>Buscar</button>
