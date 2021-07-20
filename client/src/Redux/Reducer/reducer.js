@@ -14,7 +14,8 @@ const initialState = {
     searchPokemon: {}, //Busco por query(searchBar).
     createPokemon: {}, //Crear nuevo pokemon.
     getDetails: [], //Detalle pokemon.
-    filterPokemons: [] //Filtrado.
+    filterPokemons: [], //Filtrado.
+    initPoke: [],
 
 };
 
@@ -24,6 +25,7 @@ const initialState = {
           return {
             ...state,
             getPokemons: action.payload,
+            initPoke: action.payload
           };
     
         case GET_TYPES:
@@ -54,7 +56,7 @@ const initialState = {
         case FILTER_POKEMON:
           return {
             ...state,
-            filterPokemons: action.payload,
+            getPokemons: action.payload,
           };  
           default:
             return state;

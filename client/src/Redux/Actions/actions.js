@@ -7,7 +7,7 @@ import {
     FILTER_POKEMON
 } from '../constants';
 
-import axios from 'axios';
+import axios from 'axios'; 
 
 //Obteniendo todos los juegos.
 export const getAllPokemons = () => async (dispatch) => {
@@ -69,36 +69,33 @@ export const addPokemon = (pokemon) => async (dispatch) => {
         dispatch({
             type: ADD_POKEMON,
             payload: res.data
-        });
+        }, alert('Pokemon created succesfully :)'));
     } catch(err) {
-        console.log(err)
+        alert('Error! Pokemon not created :(')
     }
 };
 
 //Filtrado por api y base de datos.
-export const filterPoke = (source, array) => (dispatch) => {
-    if(source === 'api') {
-        const res = array.filter(c => typeof c.id === 'number')
-        dispatch({type: FILTER_POKEMON, payload: [...res]})
-       };
-
-    if(source === 'db') {
-        const res = array.filter(c => typeof c.id === 'string')
-        dispatch({type: FILTER_POKEMON, payload: [...res]})
-    };
-
-    if(source === 'all') {
-        dispatch({type: FILTER_POKEMON, payload: [...array]})
-      };
-
-    if(source === 'null') {
-        dispatch({type: FILTER_POKEMON, payload: []})
-      };
+export const filterPoke = (source) => async (dispatch) => {
+      if(source === 'all') {
+          const res = await axios.get("http://localhost:3001/pokemon");
+          dispatch({type: FILTER_POKEMON, payload: res.data})
+        } else {
+          const res = await axios.get(`http://localhost:3001/pokemon?caso=${source}`);
+          dispatch({type: FILTER_POKEMON, payload: res.data})
+        }
 };
+
+//Filtrado por types
+export const filterTypes = (type) => async (dispatch) => {   
+  const res = await axios.get(`http://localhost:3001/pokemon?type=${type}`);
+  dispatch({type: FILTER_POKEMON, payload: res.data})
+}
 
 //Ordenamiento alfábetico y por fuerza.
 export const orderOption = (option, array) => (dispatch) => {
-    if(option === 'az') {
+  if(option === 'az') {
+      console.log('ARRAY: ', array);
       const one = array.sort((a, b) => {
         const first = a.name;
         const last = b.name;
@@ -143,6 +140,7 @@ export const orderOption = (option, array) => (dispatch) => {
     }
     
   }
+
 
 
 export function clearPokemon() {

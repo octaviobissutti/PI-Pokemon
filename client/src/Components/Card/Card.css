@@ -28,11 +28,10 @@
 
 .row {
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: space-between;
     align-items:center;
     box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
-    /* filter: blur(10px); */
 } 
 
 .row.center {
@@ -64,7 +63,8 @@ img {
 .card {
    
     border: 0.1rem #000000 solid;
-    background-color: #f8f8f8;
+    /* background-color:  #f8f8f8; */
+    background-color: black;
     border-radius: 1rem;
     margin: 1.3rem;
     margin-top: 4rem;
@@ -93,8 +93,6 @@ img {
     font-size: 2rem;
     padding: 0rem 0;
     text-decoration: none;
-   
-
   }
 
 .card-body h4 {
@@ -107,3 +105,8 @@ img {
 .type-home {
     text-align: center;
 }  
+
+.span {
+    text-align: center;
+    color: white;
+}

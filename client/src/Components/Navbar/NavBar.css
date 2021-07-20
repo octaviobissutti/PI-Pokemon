@@ -20,8 +20,8 @@
 
 .links-container{
   display: flex;
-  justify-content: flex-start;
-  align-content: space-around;
+  justify-content: flex-end;
+  align-content: space-between;
   margin-top: 45px;
   font-size: 25px;
   margin-left: 10px;
@@ -29,8 +29,12 @@
 
 .home-link{
   margin-right: 30px;
+  text-decoration: none;
+  color: white;
 }
 
 .create-link{
   margin-left: 30px;
+  text-decoration: none;
+  color: white;
 }

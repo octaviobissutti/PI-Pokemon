@@ -102,7 +102,7 @@ export default function CreatePokemon() {
             </div>
           <div>
               <label>Type-1</label>
-              <select className={errors.type1 && "type1"} name="type1" value={input.id} onChange={handleInputChange} required>
+              <select className={errors.type1 && "type1"} name="type1" value={input.id} onChange={handleInputChange} autoComplete = "false">
               <option value='null'>null</option>
               {getTypes && getTypes.map(t => (
                 <option value = {t.id} name = {t.name}>{t.name}</option>
@@ -114,7 +114,7 @@ export default function CreatePokemon() {
             </div>
           <div>
           <label>Type-2</label>
-              <select className={errors.type2 && "type2"} name="type2" value={input.id} onChange={handleInputChange} required >
+              <select className={errors.type2 && "type2"} name="type2" value={input.id} onChange={handleInputChange} autoComplete = "false">
               <option value='null'>null</option>
               {getTypes && getTypes.map(t => (
                 <option value = {t.id} name = {t.name}>{t.name}</option>

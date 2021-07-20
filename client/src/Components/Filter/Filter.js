@@ -1,5 +1,5 @@
 // import React, {useState, useEffect} from 'react';
-import { orderOption, filterPoke } from '../../Redux/Actions/actions';
+import { orderOption, filterPoke, filterTypes } from '../../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
 import { Link } from 'react-router-dom';
@@ -8,7 +8,7 @@ import './Filter.css';
 function Filter() {
     const filterPokemon = useSelector((state) => state.filterPokemons);
     const allPoke = useSelector((state) => state.getPokemons);
-    // const types = useSelector((state) => state.getTypes);
+    const types = useSelector((state) => state.getTypes);
 
     const dispatch = useDispatch();
 
@@ -17,9 +17,12 @@ function Filter() {
       }
 
     function filterBy(e) {
-        dispatch(filterPoke(e.target.value, allPoke))
+        dispatch(filterPoke(e.target.value))
     }  
-
+    
+    function filterByTypes(e) {
+        dispatch(filterTypes(e.target.value))
+    }
 
 
     return (
@@ -43,10 +46,19 @@ function Filter() {
 
 
 
-
-
         </select>
+
+        <div className="filterTypes">
+             <span > By Type:</span>
+                <select className="type" name="type"  onChange={filterByTypes}>
+                    <option value='null'>null</option>
+                    {types && types.map((t, index) => (
+                    <option value={t.name} key={index} name="t.name">{t.name}</option>
+                    ))}
+                </select>  
+         </div>       
         </div>
+
         <ul className = "filter1">
             {
                 filterPokemon && filterPokemon.map((poke,index) => (

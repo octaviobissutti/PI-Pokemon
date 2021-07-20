@@ -56,10 +56,11 @@ const Card = ({image, name, types, height, weight, hp, attack, defense, speed, i
               <div key={id} className = 'card'>
                <img src={image} alt='Img not found' className='medium'/>
                 <div className='card-body'>
-                  <h5>{name}</h5>
+                  <span className ="span">{name}</span>
                 </div>           
                 <div className = 'type-home'>
                   <h5>Types: {types}</h5>
+                  
                 </div>
               </div>
             </div>
