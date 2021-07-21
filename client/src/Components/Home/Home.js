@@ -31,12 +31,6 @@ useEffect(() => {
 }, [dispatch])
 
 
-// useEffect(() => {
-//     if(!searchPokemon) {
-//         alert('Pokemon not found :(');
-//     }
-// }, [searchPokemon])
-
 
 const [currentPage, setCurrentPage] = useState(1);
 const [pokemonsPerPage] = useState(12);

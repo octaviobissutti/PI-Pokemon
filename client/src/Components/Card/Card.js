@@ -3,11 +3,8 @@ import './Card.css';
 
 
 const Card = ({image, name, types, height, weight, hp, attack, defense, speed, id}) => {
-  console.log('TYPES: ', types);
   return (
-    
     <div>
-
       {
           height ? 
           <div> 
@@ -27,9 +24,6 @@ const Card = ({image, name, types, height, weight, hp, attack, defense, speed, i
                     })
                     } </h5>
                   </div>
-                  <div className = 'type'>
-                    <h5>Types: {types}</h5>
-                     </div>
                   <div className = 'height'>
                     <h5>Height: {height}</h5>
                   </div>

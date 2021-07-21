@@ -72,14 +72,14 @@ export default function CreatePokemon() {
           <Link to = {`/home`}>Home</Link>
             <div className = "form-container">
               <label>PokeName:</label>
-              <input className={errors.PokeName && 'danger'} type="text" name="name" onChange={handleInputChange} value={input.name} required/>
+              <input className={errors.PokeName && 'danger'} type="text" name="name" onChange={handleInputChange} value={input.name} required />
               {errors.name && (
                 <p className="danger">{errors.name}</p>
                 )}
                
               <div>
               <label>Hp:</label>
-              <input className={errors.hp && 'danger'} type="number" name="hp" onChange={handleInputChange} value={input.hp} required/>
+              <input className={errors.hp && 'danger'} type="number" min = "1" max ="500" name="hp" onChange={handleInputChange} value={input.hp} required  />
             
          <div>
               <label>Attack:</label>
