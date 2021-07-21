@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './CreatePokemon.css';
+// import './CreatePokemon.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPokemon, getAllTypes } from '../../Redux/Actions/actions';
@@ -67,6 +67,7 @@ export default function CreatePokemon() {
   
       
       return (
+        <div>
         <form onSubmit={handleSubmit}>
           <Link to = {`/home`}>Home</Link>
             <div className = "form-container">
@@ -138,6 +139,7 @@ export default function CreatePokemon() {
                   ) : null
               }
           </form>
+          </div>
         )
 } 
 
@@ -178,6 +180,9 @@ export default function CreatePokemon() {
     } else if (!/^([1-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0][0])$/.test(input.height)) {
       errors.height = 'Height is invalid';
     }
+    if (!input.type1 || input.type1 === "null") {
+      errors.type1 = 'Type can not be null';
+    } 
     return errors;
 };
 

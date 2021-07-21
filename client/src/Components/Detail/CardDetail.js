@@ -16,22 +16,24 @@ function CardDetail({ match }) {
   console.log(getDetails);
 
   return (
-    <div>
-    <Link className = "btn-detail" to='/home'> {'< Back'}</Link>
+      <div>
+      <Link className = "btn-detail" to='/home'> {'< Back'}</Link>
+    <div className = "div-detail">
     {
-        <Card key = {getDetails.id} 
-              name = {getDetails.name}
-              types = {getDetails.types}
-              height = {getDetails.height}
-              weight = {getDetails.weight}
-              image = {getDetails.image}
-              hp = {getDetails.hp}
-              attack = {getDetails.attack}
-              defense = {getDetails.defense}
-              speed = {getDetails.speed} 
-        />
- 
+      <Card key = {getDetails.id} 
+      name = {getDetails.name}
+      types = {getDetails.types}
+      height = {getDetails.height}
+      weight = {getDetails.weight}
+      image = {getDetails.image}
+      hp = {getDetails.hp}
+      attack = {getDetails.attack}
+      defense = {getDetails.defense}
+      speed = {getDetails.speed} 
+      />
+      
     }
+    </div>
     </div>
   ) 
 }

@@ -11,22 +11,22 @@ const Card = ({image, name, types, height, weight, hp, attack, defense, speed, i
       {
           height ? 
           <div> 
-            <div className='card'>
+            <div className='card-detail'>
               <div>
                 <img src={image} alt='Img not found' className='img' width = '200px' height = '200px' />
                 <div className='name'>
                   <h5>{name}</h5>
                 </div>
            
-                  {/* <div className = 'type'>
+                  <div className = 'type'>
                 
                     <h5>Types: {types &&
                      types.map((el,i) => {
-                      return <li key = {i}>{el.name}</li> 
+                      return <li key = {i}>{el}</li> 
                       
                     })
                     } </h5>
-                  </div> */}
+                  </div>
                   <div className = 'type'>
                     <h5>Types: {types}</h5>
                      </div>

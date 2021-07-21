@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getByName, clearPokemon } from '../../Redux/Actions/actions';
 import './SearchBar.css';
-import { Route } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 
@@ -20,7 +19,6 @@ function SearchBar({setSearch}) {
             e.preventDefault();
             dispatch(getByName(name));
             setSearch(true);
-            setname('hola'); //Mirar porqué no borra lo escrito en el input. 
         } else {
             e.preventDefault();
             setSearch(false);

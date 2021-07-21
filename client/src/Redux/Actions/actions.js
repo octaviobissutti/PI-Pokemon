@@ -84,7 +84,7 @@ export const filterPoke = (source) => async (dispatch) => {
           const res = await axios.get(`http://localhost:3001/pokemon?caso=${source}`);
           dispatch({type: FILTER_POKEMON, payload: res.data})
         }
-};
+}; 
 
 //Filtrado por types
 export const filterTypes = (type) => async (dispatch) => {   
@@ -138,8 +138,7 @@ export const orderOption = (option, array) => (dispatch) => {
     if(option === 'null') {
       dispatch({type: FILTER_POKEMON, payload: []})
     }
-    
-  }
+  };
 
 
 

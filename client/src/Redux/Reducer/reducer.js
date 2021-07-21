@@ -15,7 +15,6 @@ const initialState = {
     createPokemon: {}, //Crear nuevo pokemon.
     getDetails: [], //Detalle pokemon.
     filterPokemons: [], //Filtrado.
-    initPoke: [],
 
 };
 
@@ -49,7 +48,7 @@ const initialState = {
     
         case GET_ID:
           return {
-            ...state,
+            ...state, 
             getDetails: action.payload,
           };
 

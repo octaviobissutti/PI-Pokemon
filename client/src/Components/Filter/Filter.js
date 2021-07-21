@@ -30,7 +30,6 @@ function Filter() {
             <div className = "filter">
             <span> By Creator:</span>
             <select className="type" name="type" onChange={filterBy}>
-                    <option value="null">null</option>
                     <option value="all">All</option>
                     <option value="api">Pokemon from API</option>
                     <option value="db">Created Pokemon</option>
@@ -38,7 +37,6 @@ function Filter() {
 
             <span>Order By:</span>
         <select className = "type" name = "type" key = "order" onChange={order}>
-            <option value = "null">null</option>
             <option value = "az" name = "az">A - Z</option>
             <option value = "za" name = "za">Z - A</option>
             <option value = "attack+" name = "null">Attack +</option>
@@ -51,7 +49,6 @@ function Filter() {
         <div className="filterTypes">
              <span > By Type:</span>
                 <select className="type" name="type"  onChange={filterByTypes}>
-                    <option value='null'>null</option>
                     {types && types.map((t, index) => (
                     <option value={t.name} key={index} name="t.name">{t.name}</option>
                     ))}

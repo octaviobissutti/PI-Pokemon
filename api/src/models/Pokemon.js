@@ -49,10 +49,6 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
 
-    // api: {
-    //   type: DataTypes.BOOLEAN,
-    //   defaultValue: false
-    // }
   },
    {timestamps: false},
    {updatedAt: false},
