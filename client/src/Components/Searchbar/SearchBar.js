@@ -55,26 +55,3 @@ function SearchBar({setSearch}) {
 
 export default SearchBar
 
-// return (
-//     <header className="headerSearch">
-
-//       <div className="containerTitle">
-//         <a href="/" className ="linkTitle "><h4>XGames</h4></a>
-//       </div> 
-
-//       <div className="containerSearch">
-//        <form onSubmit={(e) =>handleSubmit(e)}>
-//           <input onChange={(e) => handleChange(e)} className="bar"
-//           type="text"
-//           placeholder="Buscar"
-//          />
-//         </form>
-//       </div>
-//       <div className="links">
-//         <Route  path="/AddGame"> <Link className="linkAddGames" to="/">Games</Link></Route>
-//         <Route  exact path="/"> <Link className="linkAddGames" to="/Addgame">Add Game</Link> </Route>
-          
-//       </div>
-//     </header>
-//     );
-// }

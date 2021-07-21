@@ -2,7 +2,7 @@ import Landing from "./Components/Landing";
 import { Route } from 'react-router-dom';
 import Home from "./Components/Home/Home";
 import React from "react";
-import CardDetail from "./Components/CardDetail";
+import CardDetail from "./Components/Detail/CardDetail";
 import CreatePokemon from "./Components/CreatePokemon/CreatePokemon";
 // import Filter from "./Components/Filter/Filter";
 // import NavBar from "./Components/Navbar/NavBar";

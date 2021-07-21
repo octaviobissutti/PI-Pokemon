@@ -4,8 +4,6 @@ import SearchBar from '../Searchbar/SearchBar';
 import { Link } from 'react-router-dom';
 import { getAllPokemons, getAllTypes} from '../../Redux/Actions/actions';
 import  { useSelector, useDispatch } from 'react-redux';
-import CreatePokemon from '../CreatePokemon/CreatePokemon';
-// import NavBar from '../Navbar/NavBar';
 import Filter from '../Filter/Filter';
 import './Home.css';
 
@@ -64,8 +62,6 @@ const prePage = () => {
  return (
      <div className = "home">
          <div> 
-         {/* <NavBar /> */}
-         {/* <CreatePokemon /> */}
          <SearchBar setSearch = {setSearch}/>
          <div className = "filter-home">
          <Filter />

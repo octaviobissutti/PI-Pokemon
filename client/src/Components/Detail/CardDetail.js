@@ -1,8 +1,9 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { getById } from "../Redux/Actions/actions";
-import Card from "../Components/Card/Card";
+import { getById } from "../../Redux/Actions/actions";
+import Card from "../Card/Card";
+import './CardDetail.css';
 
 function CardDetail({ match }) {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ function CardDetail({ match }) {
 
   return (
     <div>
-    <Link to='/home' className='btn'> {'< Back'}</Link>
+    <Link className = "btn-detail" to='/home'> {'< Back'}</Link>
     {
         <Card key = {getDetails.id} 
               name = {getDetails.name}

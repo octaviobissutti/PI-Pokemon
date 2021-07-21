@@ -69,7 +69,7 @@ export default function CreatePokemon() {
       return (
         <form onSubmit={handleSubmit}>
           <Link to = {`/home`}>Home</Link>
-            <div>
+            <div className = "form-container">
               <label>PokeName:</label>
               <input className={errors.PokeName && 'danger'} type="text" name="name" onChange={handleInputChange} value={input.name} required/>
               {errors.name && (
@@ -148,42 +148,36 @@ export default function CreatePokemon() {
     } else if (!/^[A-Za-z]+$/.test(input.name)) {
       errors.name = 'PokeName must be a text string';
     }
-    if (!input.hp) {
-      errors.hp = 'Hp is required';
-    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.hp)) {
-      errors.hp = 'Hp must be between 1 and 255';
+    else if (!input.hp) {
+      errors.hp = 'HP is required';
+    } else if (!/^([1-9]|[1-9][0-9]|[1-2][0-5][0-5])$/.test(input.hp)) {
+      errors.hp = 'HP is invalid';
     }
-    if (!input.attack) {
+    else if (!input.attack) {
       errors.attack = 'Attack is required';
-    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.attack)) {
-      errors.attack = 'Attack must be between 1 and 255';
+    } else if (!/^([5-9]|[1-9][0-9]|[1][0-8][0-9]|[1][9][0])$/.test(input.attack)) {
+      errors.attack = 'Attack is invalid';
     }
-    if (!input.defense) {
+    else if (!input.defense) {
       errors.defense = 'Defense is required';
-    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.defense)) {
-      errors.defense = 'Defense must be between 1 and 255';
+    } else if (!/^([5-9]|[1-9][0-9]|[1-2][0-2][0-9]|[2][3][0])$/.test(input.defense)) {
+      errors.defense = 'Defense is invalid';
     }
-    if (!input.speed) {
+    else if (!input.speed) {
       errors.speed = 'Speed is required';
-    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.speed)) {
-      errors.speed = 'Speed must be between 1 and 255';
+    } else if (!/^([5-9]|[1-9][0-9]|[1][0-1][0-6])$/.test(input.speed)) {
+      errors.speed = 'Speed is invalid';
     }
-    if (!input.height) {
-      errors.height = 'Heigth is required';
-    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.height)) {
-      errors.height = 'Heigth must be between 1 and 255';
+    else if (!input.weight) {
+      errors.weight = 'Weight is required';
+    } else if (!/^([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|[1-9][0-9][0-9][0-9]|[1-9][0-9][0-9][0-9])$/.test(input.weight)) {
+      errors.weight = 'Weight is invalid';
     }
-    if (!input.weight) {
-      errors.weight = 'Weigth is required';
-    } else if (!/^([0-9]{1,2}|1[0-9]{1,2}|2[0-4][0-9]|25[0-5])$/.test(input.weight)) {
-      errors.weight = 'Weigth must be between 1 and 255';
-    }
-    if(!input.types) {
-      errors.types = 'Types can´t be null'
+    else if (!input.height) {
+      errors.height = 'Height is required';
+    } else if (!/^([1-9]|[1-9][0-9]|[1][0-9][0-9]|[2][0][0])$/.test(input.height)) {
+      errors.height = 'Height is invalid';
     }
     return errors;
 };
 
-//if (inputs.genres[0] === undefined) {
-  //errors.genres = 'Géneros son requeridos';
-//}
