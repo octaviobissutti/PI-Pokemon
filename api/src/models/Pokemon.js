@@ -15,33 +15,33 @@ module.exports = (sequelize) => {
       }
     },
 
-    id:{ // pokemon.data.id
+    id:{ 
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
 
-    hp: { // pokemon.data.stats[0].base_stat
+    hp: { 
       type: DataTypes.INTEGER,      
     },
 
-    attack: { // pokemon.data.stats[1].base_stat
+    attack: { 
       type: DataTypes.INTEGER,      
     },
 
-    defense: { // pokemon.data.stats[2].base_stat
+    defense: { 
       type: DataTypes.INTEGER,      
     },
 
-    speed: { // pokemon.data.stats[5].base_stat
+    speed: { 
       type: DataTypes.INTEGER,      
     },
 
-    height: { ////pokemon.data.height
+    height: { 
       type: DataTypes.INTEGER,      
     },
 
-    weight: { //pokemon.data.weight
+    weight: { 
       type: DataTypes.INTEGER,      
     },
     

@@ -14,7 +14,7 @@ async function getAllPokemons(req, res) {
                     name: lower
                 },
                 include: [Type]
-            })
+            });
 
             if(dataBase) {
                 let type = dataBase.types.map((el) => el.name)
@@ -24,7 +24,8 @@ async function getAllPokemons(req, res) {
                     types: type,
                     height: dataBase.height,
                     weight: dataBase.weight,
-                    image: "https://i.playboard.app/p/AAUvwngrNsz0VgH-cA-girh64i7q941e6mxWACzbtr7a0A/default.jpg",
+                    // image: "https://i.pinimg.com/originals/f3/ba/06/f3ba061950a52cfed805143ca54fecb2.jpg",
+                    image: "https://i.pinimg.com/originals/72/e7/8b/72e78b090e58bfd47a49e7e348c00978.jpg",
                     hp: dataBase.hp,
                     attack: dataBase.attack,
                     defense: dataBase.defense,
@@ -51,11 +52,11 @@ async function getAllPokemons(req, res) {
                     } 
                     return res.send(pokeApi);
             }
-            }
+            };
         
         } catch (error) {
          return res.status(404).send({error: "Pokemon not found :("});
-        }
+        };
   
     }  else {
         try {
@@ -73,7 +74,7 @@ async function getAllPokemons(req, res) {
                     attack: url.data.stats[1].base_stat
                 }
                 
-            })) 
+            })); 
             var dataBase = await Pokemon.findAll({
                 include: [Type]
             });
@@ -82,17 +83,17 @@ async function getAllPokemons(req, res) {
                 let type = result.types.map(el => el.name);
                 return {
                     name: result.name.charAt(0).toUpperCase() + result.name.slice(1),
-                    image: "https://i.playboard.app/p/AAUvwngrNsz0VgH-cA-girh64i7q941e6mxWACzbtr7a0A/default.jpg",
+                    // image: "https://i.pinimg.com/originals/f3/ba/06/f3ba061950a52cfed805143ca54fecb2.jpg",
+                    image: "https://i.pinimg.com/originals/72/e7/8b/72e78b090e58bfd47a49e7e348c00978.jpg",
                     id: result.id,
                     types: type,
                     attack: result.attack
                 }
   
-            }) 
+            }); 
             var result = pokeDb.concat(response); 
             let caso  = req.query.caso;
             if(caso) {
-                console.log('CASO :', caso);
                 if(caso === 'api') {
                     const api = result.filter(c => typeof c.id === 'number');
                      return res.status(200).json(api);
@@ -114,7 +115,7 @@ async function getAllPokemons(req, res) {
             return res.send('ERROR');
         }
     }
-  }
+  };
   
 
 
@@ -132,7 +133,6 @@ async function addPokemon(req, res) {
             height: parseInt(data.height), 
             weight: parseInt(data.weight),
         });
-        console.log('CREATEDPOKE: ', createdPoke);
         await createdPoke.setTypes(data.types);       
         return res.json({message: 'Pokemon created succesfully', pokemon: createdPoke});
     }
@@ -178,7 +178,8 @@ async function getPokemonById(req, res) {
                 var finalPokemon ={
                     name : dataBase.name.charAt(0).toUpperCase() + dataBase.name.slice(1),
                     id: dataBase.id,
-                    image: "https://i.playboard.app/p/AAUvwngrNsz0VgH-cA-girh64i7q941e6mxWACzbtr7a0A/default.jpg",
+                    // image: "https://i.pinimg.com/originals/f3/ba/06/f3ba061950a52cfed805143ca54fecb2.jpg",
+                    image: "https://i.pinimg.com/originals/72/e7/8b/72e78b090e58bfd47a49e7e348c00978.jpg",
                     types: type,
                     height: dataBase.height,
                     weight: dataBase.weight,
@@ -196,10 +197,10 @@ async function getPokemonById(req, res) {
             }
            
         } catch (error) {
-            return res.status(404).send({message: 'Bad Request'})
+            return res.status(404).send({message: 'Bad Request'});
         }
     }
-}
+};
 
 
    

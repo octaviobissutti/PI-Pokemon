@@ -36,11 +36,11 @@ const [currentPage, setCurrentPage] = useState(1);
 const [pokemonsPerPage] = useState(12);
 
 
-const indexOfLastPost = currentPage * pokemonsPerPage; //12
-const indexOfFirstPost = indexOfLastPost - pokemonsPerPage; //12 - 12 = 0
+const indexOfLastPost = currentPage * pokemonsPerPage; 
+const indexOfFirstPost = indexOfLastPost - pokemonsPerPage; 
 const currentPokemons = getPokemons.slice(indexOfFirstPost, indexOfLastPost);
 
-const pageNumber = Math.ceil(getPokemons.length / pokemonsPerPage); // 40 / 12 = 4.
+const pageNumber = Math.ceil(getPokemons.length / pokemonsPerPage);
 
 const nextPage = () => {
     if(currentPage < pageNumber) setCurrentPage(currentPage + 1);

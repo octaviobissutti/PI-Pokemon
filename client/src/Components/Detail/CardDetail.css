@@ -2,11 +2,9 @@
     display: flex;
     align-items: flex-start;
     color: black;
-
-}
+};
 
 .card-detail {
-
     width: 7rem;
     height: 10rem;
 }

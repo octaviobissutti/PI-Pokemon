@@ -1,19 +1,19 @@
-/* .danger{
-    color: red
+.danger {
+    color: red;
+}
+body {
+    background-color: brown;
 }
 
-.form-container{
-    display: flex;
-    flex-direction: column;
-    border: black;
-    border-style: solid;
-    flex-wrap: wrap;
-    margin-left: 400px;
-    margin-right: 400px;
-    margin-top: 30px;
-    border-radius: 20px;
-    /* background-image: url('./form-bg.gif'); */
-    /* background-size: cover;
-    overflow: hidden;
-    margin-bottom: 15px;
-} */ 
+label {
+    font-weight: bold;
+}
+
+.form-body {
+    text-align: center;
+}
+
+input {
+    padding: 10px;
+    border-radius: 6px;
+}

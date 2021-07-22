@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import './CreatePokemon.css';
+import './CreatePokemon.css';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPokemon, getAllTypes } from '../../Redux/Actions/actions';
@@ -70,8 +70,10 @@ export default function CreatePokemon() {
         <div>
         <form onSubmit={handleSubmit}>
           <Link to = {`/home`}>Home</Link>
-            <div className = "form-container">
+            <div className = "form-body">
+              <h1 className = "logo">Create <span>Pokemon</span></h1>
               <label>PokeName:</label>
+              <br></br>
               <input className={errors.PokeName && 'danger'} type="text" name="name" onChange={handleInputChange} value={input.name} required />
               {errors.name && (
                 <p className="danger">{errors.name}</p>
@@ -79,30 +81,43 @@ export default function CreatePokemon() {
                
               <div>
               <label>Hp:</label>
+              <br></br>
               <input className={errors.hp && 'danger'} type="number" min = "1" max ="500" name="hp" onChange={handleInputChange} value={input.hp} required  />
             
          <div>
               <label>Attack:</label>
+              <br></br>
+
               <input className={errors.attack && 'danger'} type="number" name="attack" onChange={handleInputChange} value={input.attack} required/>
               
          <div>
               <label>Defense:</label>
+              <br></br>
+
               <input className={errors.defense && 'danger'} type="number" name="defense" onChange={handleInputChange} value={input.defense} required/>
              
          <div>
               <label>Speed:</label>
+              <br></br>
+
               <input className={errors.speed && 'danger'} type="number" name="speed" onChange={handleInputChange} value={input.speed} required/>
               
          <div>
               <label>Height:</label>
+              <br></br>
+
               <input className={errors.heigth && 'danger'} type="number" name="height" onChange={handleInputChange} value={input.height} required />
             
          <div>
               <label>Weight:</label>
+              <br></br>
+
               <input className={errors.weigth && 'danger'} type="number" name="weight" onChange={handleInputChange} value={input.weight} required/>
             </div>
           <div>
               <label>Type-1</label>
+              <br></br>
+
               <select className={errors.type1 && "type1"} name="type1" value={input.id} onChange={handleInputChange} autoComplete = "false">
               <option value='null'>null</option>
               {getTypes && getTypes.map(t => (
@@ -115,6 +130,8 @@ export default function CreatePokemon() {
             </div>
           <div>
           <label>Type-2</label>
+          <br></br>
+
               <select className={errors.type2 && "type2"} name="type2" value={input.id} onChange={handleInputChange} autoComplete = "false">
               <option value='null'>null</option>
               {getTypes && getTypes.map(t => (
