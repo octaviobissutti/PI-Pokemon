@@ -13,16 +13,12 @@ max-width: 100%;
  .filter-home {
   display: flex;
   justify-content: center;
-
   max-width: 100%;
   margin: auto;
-  /* background: rgb(255,126,0);
-  background: radial-gradient(circle, rgba(255,126,0,1) 0%, rgba(255,130,8,1) 14%, rgba(255,255,255,1) 50%, rgba(255,138,23,1) 100%); */
   background: rgb(255,130,8);
   background: radial-gradient(circle, rgba(255,130,8,0.7875525210084033) 50%, rgba(255,138,23,0.958420868347339) 100%, rgba(255,255,255,1) 100%, rgba(255,126,0,1) 100%);
   height: 1rem;
   padding: 1rem 0;
-  /* margin-right: 10rem; */
 } 
 
 .disabled {

@@ -1,4 +1,3 @@
-// import React, {useState, useEffect} from 'react';
 import { orderOption, filterPoke, filterTypes } from '../../Redux/Actions/actions';
 import { useSelector, useDispatch } from 'react-redux';
 import Card from '../Card/Card';
@@ -63,7 +62,6 @@ function Filter() {
                  <Card key = {index} poke = {poke}  name = {poke.name} image = {poke.image} types = {poke.types}/>
                  </Link>
                 )
-
                 )
             }
             

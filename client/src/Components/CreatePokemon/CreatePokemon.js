@@ -146,7 +146,6 @@ export default function CreatePokemon() {
             </div>
             </div>
             </div>
-            {/* <button type="submit">CREATE</button> */}
             <button  onClick={()=>dispatch(addPokemon(input))}>CREATE</button>
             {
                   alert.create ? (
