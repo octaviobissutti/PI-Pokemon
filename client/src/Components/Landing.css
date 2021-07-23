@@ -20,7 +20,7 @@
      background-size: 200% auto;
      color: white;      
      cursor: pointer;      
-     box-shadow: 0 0 20px #eee;
+     /* box-shadow: 0 0 20px #eee; */
      border-radius: 10px;
      display: block;
    }

@@ -1,9 +1,11 @@
 .App {
-  width: 100vh;
+  max-width: 95vw;
   height: 100vh;
+  overflow-x: hidden;
 };
 
 .body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 };

@@ -31,7 +31,7 @@ function SearchBar({setSearch}) {
     return (
         <header className = "headerSearch">
         <div className = "containerTitle">
-            <a href = "/home" className = "linkTitle"><h6>Home</h6></a> 
+            <img className = "img-search"src ="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/1200px-International_Pok%C3%A9mon_logo.svg.png" alt = "not found" />
         </div> 
 
         <div className = "containerSearch">   
@@ -45,7 +45,8 @@ function SearchBar({setSearch}) {
             </form>
         </div>
         <div className = "links">
-          <Link className = "linkAddGames" to = "/addPokemon">Create Pokemon</Link>
+          <Link className = "linkAddPoke" to = "/addPokemon">Create Pokemon</Link>
+          <Link className = "linkAddPoke" to ="/home">Home</Link>
         </div>
         </header>
     )

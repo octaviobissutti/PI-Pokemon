@@ -1,9 +1,7 @@
 .danger {
     color: red;
 }
-body {
-    background-color: brown;
-}
+
 
 label {
     font-weight: bold;
@@ -17,3 +15,4 @@ input {
     padding: 10px;
     border-radius: 6px;
 }
+

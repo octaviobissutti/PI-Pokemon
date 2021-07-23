@@ -54,29 +54,35 @@ const prePage = () => {
 
 
  return (
-     <div className = "home">
-         <div> 
+     <div>
          <SearchBar setSearch = {setSearch}/>
+     <div className = "home">
          <div className = "filter-home">
+
          <Filter />
          </div>
-         </div>
+         
+         
+         
+         
          <div className = "container">
          { search ? searchPokemon && <Link className="link" to = {`/cardDetail/${searchPokemon.id}`} ><Card name = {searchPokemon.name} image = {searchPokemon.image} types = {searchPokemon.types} key = {searchPokemon.id} /></Link>
          :
          (currentPokemons.length > 0 && currentPokemons.map((pokemon)=> (
-            <Link className="link" to = {`/cardDetail/${pokemon.id}`}><Card name = {pokemon.name} image = {pokemon.image} types = {pokemon.types} key = {pokemon.id} /></Link>)
-    )) 
-    }
+             <Link className="link" to = {`/cardDetail/${pokemon.id}`}><Card name = {pokemon.name} image = {pokemon.image} types = {pokemon.types} key = {pokemon.id} /></Link>)
+             )) 
+            }
     </div>
     <div className = "paginate">
         <button className={`${currentPage === 1 ? 'disabled' : ''}`} onClick={() => {prePage()}}>Previous</button>
-        <h5 >Pag: {currentPage}</h5>     
+        {/* <span>{currentPage}</span> */}
         <button className={`${currentPage === pageNumber ? 'disabled' : ''}`} onClick={() => {nextPage()}}>Next</button>
     </div>
 
     
 </div>
+    </div>
+
  )
 
 

@@ -1,22 +1,6 @@
-/* .divSearch {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 5px;
-}
-
-.input {
-    padding: 5px;
-    border-radius: 10px;
-}
-
-.btn {
-    padding: 5px;
-    border-radius: 5px;
-} */
-
-
 
 .headerSearch {
+    max-width: 100%;
     background-color: #04010c;;
     display: flex;
     justify-content: space-between;
@@ -26,13 +10,12 @@
 
 .links {
     display: flex;
-    width: 20%;
-    position: relative;
-    left: 5rem;
+    margin-right: 3rem;
     color: #dddddd;
-  
     justify-content: space-between;
     align-items: center;
+    font-weight: bold;
+
 }
 a {
     text-decoration: none;
@@ -92,4 +75,12 @@ a {
         right: 1rem;
         
     }
+}
+
+.img-search {
+    max-height: 6rem;
+}
+
+.linkAddPoke {
+    margin-right: 4rem;
 }

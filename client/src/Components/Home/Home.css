@@ -1,22 +1,36 @@
-.home {
-  background-color: #FF7E00;
-}
+ .home {
+max-width: 100%;
+} 
 .container {
+  max-width: 100%;
   display:grid;
   gap: 1px;
+  color: black;
+  background-color: #FF7E00;
   grid-template-columns: repeat(auto-fill, minmax(min(100%,30rem), 1fr));
 }
 
-.filter-home {
-  display: block;
-  width: 100%;
+ .filter-home {
+  display: flex;
+  justify-content: center;
+
+  max-width: 100%;
   margin: auto;
-}
+  /* background: rgb(255,126,0);
+  background: radial-gradient(circle, rgba(255,126,0,1) 0%, rgba(255,130,8,1) 14%, rgba(255,255,255,1) 50%, rgba(255,138,23,1) 100%); */
+  background: rgb(255,130,8);
+  background: radial-gradient(circle, rgba(255,130,8,0.7875525210084033) 50%, rgba(255,138,23,0.958420868347339) 100%, rgba(255,255,255,1) 100%, rgba(255,126,0,1) 100%);
+  height: 1rem;
+  padding: 1rem 0;
+  /* margin-right: 10rem; */
+} 
 
 .disabled {
     pointer-events: none;
     box-shadow: none;
-    color: #999;
+    background-color: 
+    #bfbfbf;
+    color: #FFFF
   }
 
  .link {
@@ -26,5 +40,18 @@
 
  .paginate {
    display: flex;
-   margin: auto;
- }
+   justify-content: center;
+   background: rgb(255,130,8);
+   background: radial-gradient(circle, rgba(255,130,8,0.7875525210084033) 50%, rgba(255,138,23,0.958420868347339) 100%, rgba(255,255,255,1) 100%, rgba(255,126,0,1) 100%);
+   height: 2rem; 
+   max-width: 100%;
+  }
+
+button {
+  background-color: black;
+  padding: 10px;
+  color: white;
+  border-radius: 6px;
+  width: 7rem;
+  cursor: pointer;
+}
