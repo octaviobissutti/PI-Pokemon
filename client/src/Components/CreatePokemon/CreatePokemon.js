@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './CreatePokemon.css';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPokemon, getAllTypes } from '../../Redux/Actions/actions';
+import SearchBar from '../Searchbar/SearchBar';
 
 export default function CreatePokemon() {
 
@@ -69,7 +69,7 @@ export default function CreatePokemon() {
       return (
         <div>
         <form onSubmit={handleSubmit}>
-        <Link className = "btn-detail" to='/home'> {'< Back'}</Link>
+         <SearchBar /> 
             <div className = "form-body">
               <h1 className = "logo">Create <span>Pokemon</span></h1>
               <label>PokeName:</label>
@@ -146,7 +146,7 @@ export default function CreatePokemon() {
             </div>
             </div>
             </div>
-            <button  onClick={()=>dispatch(addPokemon(input))}>CREATE</button>
+            <button className= "btn-create" onClick={()=>dispatch(addPokemon(input))}>CREATE</button>
             {
                   alert.create ? (
                       <div className='create--confirm'>
