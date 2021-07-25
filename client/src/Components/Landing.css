@@ -10,28 +10,6 @@
   }
   
   
-  /* .btn-grad {background-image: linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)}
-  .btn-grad {
-     margin: 10px;
-     padding: 15px 45px;
-     text-align: center;
-     text-transform: uppercase;
-     transition: 0.5s;
-     background-size: 200% auto;
-     color: white;      
-     cursor: pointer;      
-     /* box-shadow: 0 0 20px #eee; */
-     /* border-radius: 10px; */
-     /* display: block; */
-   /* } */
-/* 
-   .btn-grad:hover {
-     background-position: right center; /* change the direction of the change here */
-     /* color: #fff; */
-     /* text-decoration: none; */
-   /* } */
-   
-  
    .btn-grad {
       display: flex;
       justify-content: center;
@@ -45,10 +23,8 @@
   }
 
   .btn-grad:hover{
-    transform: scale(1.15);
-    background-color: #FF7E00;
-    color:black;
-    font-weight: bolder;
+    transform: scale(1.25);
+    font-weight: bold;
     border: solid black 4px;
   }
    
