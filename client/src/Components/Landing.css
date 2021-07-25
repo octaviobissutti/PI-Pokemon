@@ -10,7 +10,7 @@
   }
   
   
-  .btn-grad {background-image: linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)}
+  /* .btn-grad {background-image: linear-gradient(to right, #232526 0%, #414345  51%, #232526  100%)}
   .btn-grad {
      margin: 10px;
      padding: 15px 45px;
@@ -21,13 +21,34 @@
      color: white;      
      cursor: pointer;      
      /* box-shadow: 0 0 20px #eee; */
-     border-radius: 10px;
-     display: block;
-   }
-
+     /* border-radius: 10px; */
+     /* display: block; */
+   /* } */
+/* 
    .btn-grad:hover {
      background-position: right center; /* change the direction of the change here */
-     color: #fff;
-     text-decoration: none;
-   }
+     /* color: #fff; */
+     /* text-decoration: none; */
+   /* } */
+   
   
+   .btn-grad {
+      display: flex;
+      justify-content: center;
+      margin-top: 5px;
+      background-color: black;
+      padding: 15px 45px;
+      color: #ddd;
+      border-radius: 6px;
+      width: 7rem;
+      cursor: pointer;
+  }
+
+  .btn-grad:hover{
+    transform: scale(1.15);
+    background-color: #FF7E00;
+    color:black;
+    font-weight: bolder;
+    border: solid black 4px;
+  }
+   

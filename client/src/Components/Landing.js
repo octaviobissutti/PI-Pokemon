@@ -6,7 +6,7 @@ function Landing() {
   return (
     <div className="bg-go">
       <Link to="/home">
-        <button className="btn-grad"> HOME </button>
+        <button className="btn-grad"> GO </button>
       </Link>
   
     </div>
