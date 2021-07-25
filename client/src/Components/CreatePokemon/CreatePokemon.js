@@ -69,7 +69,7 @@ export default function CreatePokemon() {
       return (
         <div>
         <form onSubmit={handleSubmit}>
-          <Link to = {`/home`}>Home</Link>
+        <Link className = "btn-detail" to='/home'> {'< Back'}</Link>
             <div className = "form-body">
               <h1 className = "logo">Create <span>Pokemon</span></h1>
               <label>PokeName:</label>
