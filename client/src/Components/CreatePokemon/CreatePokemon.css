@@ -8,6 +8,8 @@ label {
 
 .form-body {
     text-align: center;
+    justify-content: space-between;
+    margin: auto;
 }
 
 input {
@@ -16,12 +18,11 @@ input {
 }
 
 .btn-create {
-    display: block;
-    position: absolute;
     background-color: black;
     padding: 10px;
     color: white;
     border-radius: 6px;
     width: 7rem;
     cursor: pointer;
+    margin-top: 15px;
 }

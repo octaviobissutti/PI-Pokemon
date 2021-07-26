@@ -140,13 +140,13 @@ export default function CreatePokemon() {
                {errors.type2 && ( <p className="type2">{errors.type2}</p>)}
               </select>
             </div>    
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
-            </div>
             <button className= "btn-create" onClick={()=>dispatch(addPokemon(input))}>CREATE</button>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
             {
                   alert.create ? (
                       <div className='create--confirm'>
