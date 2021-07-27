@@ -1,90 +1,79 @@
-
-*{
-    font-family: Arial, Helvetica, sans-serif
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }
-
 
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items:center;
-    box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
-} 
-
-.row.center {
-    justify-content: center;
-    color: #ffffff;
-    padding: 1rem;
-    
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
 }
 
+.row.center {
+  justify-content: center;
+  color: #ffffff;
+  padding: 1rem;
+}
 
 .row.center .card:hover {
-    color: #2600ff;
-
+  color: #2600ff;
 }
 
 /* Image */
 img {
-    border-radius: 0.5rem;
-    margin: 1rem;
-    height:10em;
-    width:8em;
-    object-fit: contain;
-
+  border-radius: 0.5rem;
+  margin: 1rem;
+  height: 10em;
+  width: 8em;
+  object-fit: contain;
 }
-
 
 /* Card */
 
 .card {
-   
-    border: 0.1rem #000000 solid;
-    /* background-color:  #f8f8f8; */
-    background-color: black;
-    border-radius: 1rem;
-    margin: 1.3rem;
-    margin-top: 4rem;
-    text-decoration: none;
-    width: 12em;
-    height: 16em;
-    padding: 3em;
-    transition: .35s;
-  }
-  
-  .card-body > * {
-    margin: 0.5rem;
-    color: #000000;
-    text-align: center;
-  }
+  border: 0.1rem #000000 solid;
+  background-color: black;
+  border-radius: 1rem;
+  margin: 1.3rem;
+  margin-top: 4rem;
+  text-decoration: none;
+  width: 12em;
+  height: 16em;
+  padding: 3em;
+  transition: 0.35s;
+}
 
-.card:hover{
+.card-body > * {
+  margin: 0.5rem;
+  color: #000000;
+  text-align: center;
+}
+
+.card:hover {
   text-decoration: none;
   border: 0.1rem #2600ff solid;
   transform: scale(1.15);
-}  
-
+}
 
 /* Common */
 .card-body h1 {
-    font-size: 2rem;
-    padding: 0rem 0;
-    text-decoration: none;
-  }
+  font-size: 2rem;
+  padding: 0rem 0;
+  text-decoration: none;
+}
 
 .card-body h4 {
-    font-size: 0.8rem;
-    padding: 0rem 0;
-    text-decoration: none;
-  }
-
+  font-size: 0.8rem;
+  padding: 0rem 0;
+  text-decoration: none;
+}
 
 .type-home {
-    text-align: center;
-}  
+  text-align: center;
+}
 
 .span {
-    text-align: center;
-    color: white;
+  text-align: center;
+  color: white;
 }

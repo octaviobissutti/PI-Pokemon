@@ -151,7 +151,7 @@ async function getPokemonById(req, res) {
                 var api = await axios.get(`${URL}${POKEMON}/${id}`);
                 let type = api.data.types.map(el => el.type.name);
                 var poke = {
-                    name: api.data.name,
+                    name: api.data.name.charAt(0).toUpperCase() + api.data.name.slice(1),
                     id: api.data.id,
                     image: api.data.sprites.other.dream_world.front_default,
                     types: type,

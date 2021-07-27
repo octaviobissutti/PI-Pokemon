@@ -1,3 +1,7 @@
+.div-gral {
+    min-height: 100vh;
+    background-color: black;
+}
 .danger {
     color: red;
 }
@@ -7,13 +11,15 @@ label {
 }
 
 .form-body {
-    text-align: center;
+     text-align: center;
     justify-content: space-between;
-    margin: auto;
+    margin-top: 80px;
+     background-image: url('../../Img/charizard.jpg'); 
+    /* border: 1px solid black;  */
 }
 
 input {
-    padding: 10px;
+    padding: 6px;
     border-radius: 6px;
 }
 

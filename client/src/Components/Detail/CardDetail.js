@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { getById } from "../../Redux/Actions/actions";
 import Card from "../Card/Card";
+import SearchBar from "../Searchbar/SearchBar";
 import './CardDetail.css';
 
 function CardDetail({ match }) {
@@ -17,7 +18,8 @@ function CardDetail({ match }) {
 
   return (
       <div>
-      <Link className = "btn-detail" to='/home'> {'< Back'}</Link>
+        <SearchBar />
+      {/* <Link className = "btn-detail" to='/home'> {'< Back'}</Link> */}
     <div className = "div-detail">
     {
       <Card key = {getDetails.id} 

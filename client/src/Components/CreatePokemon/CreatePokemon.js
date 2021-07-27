@@ -67,7 +67,7 @@ export default function CreatePokemon() {
   
       
       return (
-        <div>
+        <div className = "div-gral">
         <form onSubmit={handleSubmit}>
          <SearchBar /> 
             <div className = "form-body">

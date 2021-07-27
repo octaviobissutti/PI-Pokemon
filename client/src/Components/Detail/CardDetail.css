@@ -1,4 +1,4 @@
-.btn-detail {
+/* .btn-detail {
     display: flex;
     align-items: flex-start;
     color: black;
@@ -14,5 +14,90 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 
+* {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .body {
+    background-color: #FF7E00;
+    min-height: 100vh;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.5);
+  }
+  
+  .row.center-detail {
+    justify-content: center;
+    color: #ffffff;
+    padding-bottom: 17rem;
+  }
+  
+  .row.center .card:hover {
+    color: #2600ff;
+  }
+  
+  /* Image */
+  .img-detail {
+    border-radius: 0.5rem;
+    margin: 1rem;
+    height: 10em;
+    width: 8em;
+    object-fit: contain;
+  }
+  
+  /* Card */
+  
+  .card-detail {
+    border: 0.1rem #000000 solid;
+    background-color: black;
+    border-radius: 1rem;
+    margin: 1.3rem;
+    margin-top: 4rem;
+    text-decoration: none;
+    width: 15em;
+    height: 30em;
+    padding: 3em;
+    transition: 0.35s;
+  }
+  
+  .card-body > * {
+    margin: 0.5rem;
+    color: #000000;
+    text-align: center;
+  }
+  
+  .card:hover {
+    text-decoration: none;
+    border: 0.1rem #2600ff solid;
+    transform: scale(1.15);
+  }
+  
+  /* Common */
+  .card-body h1 {
+    font-size: 2rem;
+    padding: 0rem 0;
+    text-decoration: none;
+  }
+  
+  .card-body h4 {
+    font-size: 0.8rem;
+    padding: 0rem 0;
+    text-decoration: none;
+  }
+  
+  .type-home {
+    text-align: center;
+  }
+  
+  .span {
+    text-align: center;
+    color: white;
+  }
+  

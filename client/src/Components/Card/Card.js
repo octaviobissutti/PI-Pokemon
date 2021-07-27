@@ -7,13 +7,13 @@ const Card = ({image, name, types, height, weight, hp, attack, defense, speed, i
     <div>
       {
           height ? 
-          <div> 
-            <div className='card-detail'>
-              <div>
-                <img src={image} alt='Img not found' className='img' width = '200px' height = '200px' />
-                <div className='name'>
-                  <h5>{name}</h5>
-                </div>
+          <div className = "body"> 
+            <div className='row center-detail'>
+              <div className = "card-detail">
+              <img src={image} alt='Img not found' className='img-detail'/>
+              <div className='card-body'>
+                  <span className ="span">{name}</span>
+                </div> 
            
                   <div className = 'type'>
                 
