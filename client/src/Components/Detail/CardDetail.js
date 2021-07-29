@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { getById } from "../../Redux/Actions/actions";
 import Card from "../Card/Card";
 import SearchBar from "../Searchbar/SearchBar";
