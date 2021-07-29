@@ -55,6 +55,7 @@ function Home() {
         <div className="container">
           {search
             ? searchPokemon && (
+              <div className = "div-search">
                 <Link className="link" to={`/cardDetail/${searchPokemon.id}`}>
                   <Card
                     name={searchPokemon.name}
@@ -63,6 +64,7 @@ function Home() {
                     key={searchPokemon.id}
                   />
                 </Link>
+                </div>
               )
             : currentPokemons.length > 0 &&
               currentPokemons.map((pokemon) => (

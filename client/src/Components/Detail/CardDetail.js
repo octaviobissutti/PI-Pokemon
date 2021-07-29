@@ -19,7 +19,6 @@ function CardDetail({ match }) {
   return (
       <div>
         <SearchBar />
-      {/* <Link className = "btn-detail" to='/home'> {'< Back'}</Link> */}
     <div className = "div-detail">
     {
       <Card key = {getDetails.id} 

@@ -51,3 +51,13 @@ button {
   width: 7rem;
   cursor: pointer;
 }
+
+.div-search {
+    /* justify-content: center; */
+    color: #ffffff;
+    padding-bottom: 10rem;
+    min-height: auto;
+    min-width: 210vh;
+  }
+
+
