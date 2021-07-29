@@ -47,7 +47,10 @@ function Home() {
   return (
     <div>
       <SearchBar setSearch={setSearch} />
-      <div className="home">
+      {
+        currentPokemons?.length > 0 
+        ?
+        <div className="home">
         <div className="filter-home">
           <Filter />
         </div>
@@ -56,14 +59,18 @@ function Home() {
           {search
             ? searchPokemon && (
               <div className = "div-search">
-                <Link className="link" to={`/cardDetail/${searchPokemon.id}`}>
-                  <Card
+                  <Card 
                     name={searchPokemon.name}
                     image={searchPokemon.image}
                     types={searchPokemon.types}
                     key={searchPokemon.id}
+                    height={searchPokemon.height}
+                    weight = {searchPokemon.weight}
+                    hp = {searchPokemon.hp}
+                    attack = {searchPokemon.attack}
+                    defense = {searchPokemon.defense}
+                    speed = {searchPokemon.speed} 
                   />
-                </Link>
                 </div>
               )
             : currentPokemons.length > 0 &&
@@ -75,7 +82,7 @@ function Home() {
                     types={pokemon.types}
                     key={pokemon.id}
                   />
-                </Link>
+                 </Link>
               ))}
         </div>
         <div className="paginate">
@@ -97,6 +104,9 @@ function Home() {
           </button>
         </div>
       </div>
+      : <h2>Loading...</h2> 
+      }
+     
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, } from "react-redux";
 import { getByName, clearPokemon } from "../../Redux/Actions/actions";
 import "./SearchBar.css";
 import { Link } from "react-router-dom";
@@ -43,6 +43,7 @@ function SearchBar({ setSearch }) {
             placeholder="Search.."
             onChange={(e) => handleInputChange(e)}
           />
+          <Link to = "/cardDetail/"></Link>
           <button className="btn" onClick={(e) => handleClick(e)}>
             Buscar
           </button>

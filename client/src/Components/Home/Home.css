@@ -53,11 +53,12 @@ button {
 }
 
 .div-search {
-    /* justify-content: center; */
+    justify-content: center;
     color: #ffffff;
-    padding-bottom: 10rem;
-    min-height: auto;
-    min-width: 210vh;
-  }
+    /* padding-bottom: 10rem; */
+    min-height: 100vh;
+    min-width: 99vw;
+    /* padding-bottom: 20rem; */
+   } 
 
-
+ 
