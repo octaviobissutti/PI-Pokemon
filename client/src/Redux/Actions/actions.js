@@ -17,7 +17,6 @@ const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 export const getAllPokemons = () => async (dispatch) => {
     try {
         const res = await axios.get(`${API_URL}/pokemon`);
-        console.log(process.env);
         dispatch({
             type: GET_POKEMONS,
             payload: res.data
