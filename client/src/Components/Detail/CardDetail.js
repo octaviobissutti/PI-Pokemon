@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getById } from "../../Redux/Actions/actions";
 import Card from "../Card/Card";
@@ -10,6 +10,7 @@ function CardDetail({ match }) {
   const getDetails = useSelector((state) => state.getDetails);
   const fixedMatch = useRef(match.params.id);
 
+
   useEffect(() => {
     dispatch(getById(fixedMatch.current));
   }, [dispatch]);
@@ -17,7 +18,7 @@ function CardDetail({ match }) {
 
   return (
       <div>
-        <SearchBar />
+        <SearchBar  detail = {true} />
     <div className = "div-detail">
     {
       <Card key = {getDetails.id} 

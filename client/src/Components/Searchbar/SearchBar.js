@@ -4,7 +4,7 @@ import { getByName, clearPokemon } from "../../Redux/Actions/actions";
 import "./SearchBar.css";
 import { Link } from "react-router-dom";
 
-function SearchBar({ setSearch }) {
+function SearchBar({ setSearch, detail }) {
   const dispatch = useDispatch();
   const [name, setname] = useState("");
 
@@ -36,6 +36,8 @@ function SearchBar({ setSearch }) {
       </div>
 
       <div className="containerSearch">
+          {
+            !detail  &&  
         <form>
           <input
             className="bar"
@@ -48,6 +50,7 @@ function SearchBar({ setSearch }) {
             Buscar
           </button>
         </form>
+          }
       </div>
       <div className="links">
         <Link className="linkAddPoke" to="/addPokemon">
