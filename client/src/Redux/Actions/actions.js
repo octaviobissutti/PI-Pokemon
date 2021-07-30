@@ -19,7 +19,7 @@ export const getAllPokemons = () => async (dispatch) => {
         const res = await axios.get(`${API_URL}/pokemon`);
         dispatch({
             type: GET_POKEMONS,
-            payload: res
+            payload: res.data
         });
     } catch (err) {
         console.log(err) 
@@ -33,7 +33,7 @@ export const getAllTypes = () => async (dispatch) => {
         const res = await axios.get(`${API_URL}/type`);
         dispatch({
             type: GET_TYPES,
-            payload: res
+            payload: res.data
         });
     } catch (err) {
         console.log(err)
@@ -46,7 +46,7 @@ export const getByName = (name) => async (dispatch) => {
         const res = await axios.get(`${API_URL}/pokemon?name=${name}`);
         dispatch({
             type: SEARCH_POKEMONS,
-            payload: res
+            payload: res.data
         });
     } catch(err) {
         console.log(err)
@@ -59,7 +59,7 @@ export const getById = (id) => async (dispatch) => {
         const res = await axios.get(`${API_URL}/pokemon/${id}`);
     dispatch({
         type: GET_ID,
-        payload: res
+        payload: res.data
     });
     } catch(err) {
     console.log(err)
@@ -72,7 +72,7 @@ export const addPokemon = (pokemon) => async (dispatch) => {
         const res = await axios.post(`${API_URL}/pokemon`, pokemon);
         dispatch({
             type: ADD_POKEMON,
-            payload: res
+            payload: res.data
         }, alert('Pokemon created succesfully :)'));
     } catch(err) {
         alert('Error! Pokemon not created :(')
@@ -83,17 +83,17 @@ export const addPokemon = (pokemon) => async (dispatch) => {
 export const filterPoke = (source) => async (dispatch) => {
       if(source === 'all') {
           const res = await axios.get(`${API_URL}/pokemon`);
-          dispatch({type: FILTER_POKEMON, payload: res})
+          dispatch({type: FILTER_POKEMON, payload: res.data})
         } else {
           const res = await axios.get(`${API_URL}/pokemon?caso=${source}`);
-          dispatch({type: FILTER_POKEMON, payload: res})
+          dispatch({type: FILTER_POKEMON, payload: res.data})
         }
 }; 
 
 //Filtrado por types
 export const filterTypes = (type) => async (dispatch) => {   
   const res = await axios.get(`${API_URL}/pokemon?type=${type}`);
-  dispatch({type: FILTER_POKEMON, payload: res})
+  dispatch({type: FILTER_POKEMON, payload: res.data})
 }
 
 //Ordenamiento alfábetico y por fuerza.

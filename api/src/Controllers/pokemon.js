@@ -31,7 +31,7 @@ async function getAllPokemons(req, res) {
                     speed: dataBase.speed
       
                 } 
-                return res.send(pokeDb);
+                return res.json(pokeDb);
             } else {
 
                 let api = await axios.get(`${URL}${POKEMON}/${lower}`); 
@@ -49,7 +49,7 @@ async function getAllPokemons(req, res) {
                         defense: api.data.stats[2].base_stat,
                         speed: api.data.stats[5].base_stat
                     } 
-                    return res.send(pokeApi);
+                    return res.json(pokeApi);
             }
             };
         
@@ -108,7 +108,7 @@ async function getAllPokemons(req, res) {
             
             }
 
-            return res.send(result);  
+            return res.json(result);  
         } catch(error) {
             return res.send('ERROR');
         }
@@ -189,7 +189,7 @@ async function getPokemonById(req, res) {
                 if(!dataBase) {
                     return res.status(404).send({message: 'Pokemon not found'})
                 }
-                return res.send(finalPokemon);
+                return res.json(finalPokemon);
                 
             }
            
