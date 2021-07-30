@@ -73,8 +73,8 @@ function Home() {
                   />
                 </div>
               )
-            : currentPokemons.length > 0 &&
-              currentPokemons?.map((pokemon) => (
+            : currentPokemons?.length > 0 &&
+              currentPokemons.map((pokemon) => (
                 <Link className="link" to={`/cardDetail/${pokemon.id}`}>
                   <Card
                     name={pokemon.name}
