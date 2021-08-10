@@ -23,7 +23,9 @@ function Home() {
     if (getTypes) {
       dispatch(getAllTypes());
     }
+    //eslint-disable-next-line react-hooks/exhaustive-deps         
   }, [dispatch]);
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemonsPerPage] = useState(12);
