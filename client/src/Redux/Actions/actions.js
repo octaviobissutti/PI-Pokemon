@@ -4,7 +4,8 @@ import {
     SEARCH_POKEMONS,
     GET_ID,
     ADD_POKEMON,
-    FILTER_POKEMON
+    FILTER_POKEMON,
+    CLEAR_DETAIL
 } from '../constants';
 
 import axios from 'axios'; 
@@ -57,10 +58,18 @@ export const getByName = (name) => async (dispatch) => {
 export const getById = (id) => async (dispatch) => {
     try {
         const res = await axios.get(`${API_URL}/pokemon/${id}`);
-    dispatch({
-        type: GET_ID,
-        payload: res.data
-    });
+        if(id) {
+          dispatch({
+              type: GET_ID,
+              payload: res.data
+          });
+        } else {
+          dispatch({
+            type:GET_ID,
+            payload: 'Pókemon not found'
+          })
+        }
+
     } catch(err) {
     console.log(err)
    } 
@@ -149,7 +158,14 @@ export const orderOption = (option, array) => (dispatch) => {
 export function clearPokemon() {
     return {
         type: SEARCH_POKEMONS,
-        payload: undefined
+        payload: []
     }
 };
+
+export function clearDetail() {
+  return {
+    type: CLEAR_DETAIL,
+    payload: []
+  }
+}
 
