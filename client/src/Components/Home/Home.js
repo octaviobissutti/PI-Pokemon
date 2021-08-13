@@ -59,7 +59,8 @@ function Home() {
 
         <div className="container">
           {search
-            ? searchPokemon && (
+            ? 
+            searchPokemon && (
               <div className = "div-search">
                   <Card 
                     name={searchPokemon.name}
@@ -85,6 +86,8 @@ function Home() {
                     key={pokemon.id}
                   />
                  </Link>
+                
+                 
               ))}
         </div>
         <div className="paginate">
