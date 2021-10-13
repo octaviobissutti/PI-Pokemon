@@ -24,7 +24,7 @@ function SearchBar({ setSearch, detail }) {
       dispatch(clearPokemon());
     }
   };
-
+ 
   return (
     <header className="headerSearch">
       <div className="containerTitle">

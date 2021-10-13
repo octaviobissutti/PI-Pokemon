@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ef4a8c23.chunk.css",
+    "main.js": "/static/js/main.f03fa49b.chunk.js",
+    "main.js.map": "/static/js/main.f03fa49b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ba54af64.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ba54af64.js.map",
+    "static/js/2.314531db.chunk.js": "/static/js/2.314531db.chunk.js",
+    "static/js/2.314531db.chunk.js.map": "/static/js/2.314531db.chunk.js.map",
+    "static/js/3.d19802ac.chunk.js": "/static/js/3.d19802ac.chunk.js",
+    "static/js/3.d19802ac.chunk.js.map": "/static/js/3.d19802ac.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.ef4a8c23.chunk.css.map": "/static/css/main.ef4a8c23.chunk.css.map",
+    "static/js/2.314531db.chunk.js.LICENSE.txt": "/static/js/2.314531db.chunk.js.LICENSE.txt",
+    "static/media/CreatePokemon.css": "/static/media/charizard.ff52bb6d.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ba54af64.js",
+    "static/js/2.314531db.chunk.js",
+    "static/css/main.ef4a8c23.chunk.css",
+    "static/js/main.f03fa49b.chunk.js"
+  ]
+}
